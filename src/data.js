@@ -79,4 +79,4 @@ export const sliderItems = [
 
   ]
 
-  export const NewsletterIMG = 'https://assets.teenvogue.com/photos/5d432b95cc4827000914bc09/16:9/w_2560%2Cc_limit/00-story-summer-outfits.jpg'
+  export const NewsletterIMG = 'https://gstatic.gvn360.com/2023/06/Blackpink_-8-2048x1152.jpg'
