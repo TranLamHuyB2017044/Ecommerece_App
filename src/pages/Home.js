@@ -5,6 +5,10 @@ import Newsletter from "../components/NewsletterComponent/Newsletter";
 import Products from "../components/ProductsComponent/Products";
 import Slider from "../components/SliderComponent/Slider";
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import Header from "../components/HeaderComponent/Header";
+
+import Announcement from "../components/AnnouncementComponent/Announcement";
+import NavBar from "../components/NavBarComponent/NavBar";
 function Home() {
     const [goToTop, setGoToTop] = useState(false)
     useEffect(() => {
@@ -18,6 +22,9 @@ function Home() {
     }, [])
     return ( 
         <div className="home_content">
+            <Announcement/>
+            <Header />
+            <NavBar/>
             <Slider/>
             <h1 style={{textAlign: 'center'}}>Get Inspire</h1>
             <Categories/>
@@ -43,6 +50,7 @@ function Home() {
                     width: '60px',
                     height: '60px',
                     cursor: 'pointer',
+                    zIndex: '13'
                 }}
                 onClick={() => {window.scrollTo({top: 0, left: 0, behavior: 'smooth'});}}
                 >
