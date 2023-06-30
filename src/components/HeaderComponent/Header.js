@@ -1,4 +1,5 @@
 import { IconButton } from '@mui/material';
+import { Link } from 'react-router-dom';
 import Badge from '@mui/material/Badge';
 import styles from './Header.module.scss'
 import SearchIcon from '@mui/icons-material/Search';
@@ -15,8 +16,8 @@ function Header() {
             </div>
             <div className={styles.header_center}>CAMILE.</div>
             <div className={styles.header_right}>
-                <p>REGISTER</p>
-                <p>SIGN IN</p>
+                <p>Stores</p>
+                <Link className={styles.login} to='/login'>Sign In</Link>
                 <IconButton aria-label="cart">
                     <Badge badgeContent={4} color="secondary">
                         <ShoppingCartOutlinedIcon />

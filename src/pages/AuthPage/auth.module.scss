@@ -1,0 +1,101 @@
+.wrapper{
+    display: flex;
+    .img{
+        flex:1;
+        width: 800px;
+        height: 800px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    .auth_form{
+        flex:1;
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        background-color: #f9f0ea;
+        .change_form{
+            text-align: center;
+            .text{
+                text-decoration: none;
+                color: #000;
+                font-size: 2rem;
+                position: relative;
+                &::after {
+                    content: "";
+                    width: 0;
+                    height: 1px;
+                    background: #000;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    transition: all 0.2s linear;
+                } 
+                &:hover::after {
+                    width: 100%;
+                }
+            }
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 50%;
+            margin-top: 3.5rem;
+            .input_group{
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+                label{
+                    font-size: 14px;
+                }
+                input{
+                    height: 40px;
+                    border: 1px solid teal;
+                    &:focus{
+                        outline: teal;
+                    }
+                }
+
+                .error{
+                    font-size: 14px;
+                    display: flex;
+                    justify-content: flex-start;
+                    color: red;
+                }
+            }
+            .input_group_checkbox{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                justify-items: center;
+                gap: 1rem;
+                input[type = 'checkbox']{
+                    height: 25px;
+                    width:  15px;
+                }
+                p{
+                    font-size: 13px;
+                    font-weight: 500;
+                }
+            }
+            .submit{
+                padding: 10px ;
+                width: 40%;
+                border-radius: 20px;
+                border: 1px solid #000;
+                text-transform: uppercase;
+                border: 2px solid teal;
+                cursor: pointer;
+                opacity: 0.8;
+                margin-left: auto;
+                margin-right: auto;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

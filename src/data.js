@@ -80,3 +80,4 @@ export const sliderItems = [
   ]
 
   export const NewsletterIMG = 'https://gstatic.gvn360.com/2023/06/Blackpink_-8-2048x1152.jpg'
+  export const imgLogin = 'https://www.cuyana.com/dw/image/v2/BDQQ_PRD/on/demandware.static/-/Sites-master-catalog-cuyana/default/dwd12f20b9/images/2022_11Nov/rollover-inside-bag/HO22_DressForThePartyEdit_2979_Rollover.jpg?sw=1280&sh=1920"'

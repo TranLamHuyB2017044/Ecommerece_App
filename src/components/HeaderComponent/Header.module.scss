@@ -40,6 +40,42 @@
         justify-content: flex-end;
         gap: 2rem;
         cursor: pointer;
+        p{
+            padding: 1rem;
+            position: relative;
+            &::after {
+                content: "";
+                width: 0;
+                height: 1px;
+                background: #000;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: all 0.2s linear;
+            } 
+            &:hover::after {
+                width: 100%;
+            }
+        }
+        .login{
+            padding: 1rem;
+            text-decoration: none;
+            color: black;
+            position: relative;
+            &::after {
+                content: "";
+                width: 0;
+                height: 1px;
+                background: #000;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: all 0.2s linear;
+            } 
+            &:hover::after {
+                width: 100%;
+            }
+        }
         svg{
             font-size: 2.5rem;
         }

@@ -5,11 +5,12 @@ function Announcement() {
             textAlign: 'center',
             color: 'white',
             height:'30',
-            fontSize:'14',
-            fontWeight:'500'
+            fontSize:'14px',
+            padding: '8px',
+            fontWeight:'400'
         }}
         >
-        Free shipping with oder over 100$
+        Complimentary no rush shipping for U.S. orders over $95. Shop Now.
         </p>
     );
 }

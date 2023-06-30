@@ -1,0 +1,95 @@
+.wrapper{
+    display: flex;
+    height: 800px;
+    margin-top: 4rem;
+    .image_container{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        height: 80%;
+        img{
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .info{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: flex-start;
+        padding: 3rem;
+        .product_name{
+            font-size: 2.5rem;
+            font-weight: normal;
+        }
+        .description{
+            font-size: 14px;
+            font-weight: 300;
+        }
+        .price{
+            font-size: 2.5rem;
+        }
+        .Colors{
+            display: flex;
+            gap: 2.6rem;
+            .color{
+                border-radius: 50%;
+                cursor: pointer;
+                padding: 1px;
+                width: 25px;
+                height: 25px;
+            }
+        }
+        .Size{
+            display: flex;
+            gap: 1rem;
+            margin-left: 3rem;
+            p{
+                font-size: 2rem;
+                opacity: 0.7;
+            }
+            
+        }
+        .Quantity{
+            display: flex;
+            gap: 1.6rem;
+            margin-top: 1.6rem;
+            font-size: 2rem;
+            .quantity{
+                opacity: 0.8;
+                margin-top: 2px;
+            }
+            .minus{
+                cursor: pointer;
+                width: 1.6rem;
+                font-size: 3rem;
+                margin-top: -5px;
+            }
+            .number{
+                border: 1px solid teal;
+                padding: 5px 14px;
+                border-radius: 10px;
+                margin-top: -5px;
+            }
+            .plus{
+                width: 1.6rem;
+                margin-top: -5px;
+                font-size: 3rem;
+                cursor: pointer;
+            }
+        }
+        .AddCart_Button{
+            margin-top: 2rem;
+            padding: 1rem;
+            button{
+                cursor: pointer;
+                padding: 1rem;
+                &:hover{
+                    
+                    border: 2px solid teal;
+                }
+            }
+        }
+    }
+}

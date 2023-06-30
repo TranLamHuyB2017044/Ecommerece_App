@@ -1,0 +1,30 @@
+.Title{
+    font-size: 3rem;
+    font-weight: 600;
+    margin: auto;
+    padding: 1.5rem;
+}
+.Filters_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    margin: 2rem;
+    justify-items: center;
+    select{
+        padding: 10px;
+        margin-top: -4px;
+
+    }
+    .filter_left{
+        display: flex;
+        gap: 1rem;
+        font-size: 2rem;
+        
+    }
+    .filter_right{
+        display: flex;
+        gap: 1rem;
+        font-size: 2rem;
+        
+    }
+}
