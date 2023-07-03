@@ -1,0 +1,7 @@
+@import '../GlobalStyles//GlobalStyles.scss';
+
+.GoToTop_container{
+    @include responsive(phone){
+        display: none;
+    }
+}

@@ -81,3 +81,5 @@ export const sliderItems = [
 
   export const NewsletterIMG = 'https://gstatic.gvn360.com/2023/06/Blackpink_-8-2048x1152.jpg'
   export const imgLogin = 'https://www.cuyana.com/dw/image/v2/BDQQ_PRD/on/demandware.static/-/Sites-master-catalog-cuyana/default/dwd12f20b9/images/2022_11Nov/rollover-inside-bag/HO22_DressForThePartyEdit_2979_Rollover.jpg?sw=1280&sh=1920"'
+  export const imgShoes = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/3b8a8a4b-7dcb-4495-a3aa-83386f143cc8/air-jordan-1-mid-se-mens-shoes-Zn07hL.png'
+  export const imgHoodie = 'https://assets.adidas.com/images/w_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/58387042b42b4a0d89d5299ff5c3de8d_9366/Ao_Hoodie_Khoa_Keo_3_Soc_Future_Icons_Ngoc_lam_IJ8878_01_laydown.jpg'

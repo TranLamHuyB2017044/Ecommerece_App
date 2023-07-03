@@ -5,8 +5,8 @@ function NavBar() {
         <div className={styles.Navbar_container}>
             <ul className={styles.Navbar_items}>
                 <Link to='/' className={styles.item}>Home</Link>
-                <Link to='/Products' className={styles.item}>Shop</Link>
-                <Link to='/Detail' className={styles.item}>Shoes</Link>
+                <Link to='/products' className={styles.item}>Shop</Link>
+                <Link to='/detail' className={styles.item}>Shoes</Link>
                 <li className={styles.item}>Jewelry</li>
                 <li className={styles.item}>New Arrive</li>
             </ul>

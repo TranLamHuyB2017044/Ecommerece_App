@@ -17,3 +17,13 @@ body{
     line-height: 1.5;
     text-rendering: optimizeSpeed;
 }
+
+@mixin responsive ($breakpoint){
+    @if $breakpoint == phone{
+        @media (max-width: 600px){@content}
+    };
+    @if $breakpoint == tablet{
+        @media (max-width: 1200px){@content}
+    }
+
+}

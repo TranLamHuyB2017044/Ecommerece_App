@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
-
+import styles from './top.module.scss'
 function GoToTop() {
     const [goToTop, setGoToTop] = useState(false)
     useEffect(() => {
@@ -26,8 +26,10 @@ function GoToTop() {
                 width: '60px',
                 height: '60px',
                 cursor: 'pointer',
-                zIndex: '13'
+                zIndex: '13',
+                
             }}
+            className={styles.GoToTop_container}
             onClick={() => {window.scrollTo({top: 0, left: 0, behavior: 'smooth'});}}
             >
                 <KeyboardArrowUpOutlinedIcon 

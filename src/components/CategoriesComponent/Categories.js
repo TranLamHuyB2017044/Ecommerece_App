@@ -1,5 +1,6 @@
 import styles from './Categories.module.scss';
 import { categories } from '../../data';
+import { Link } from 'react-router-dom';
 function Categories() {
     return ( 
         <div className={styles.category_container}>
@@ -10,7 +11,7 @@ function Categories() {
                     </div>
                     <div className={styles.category_info}>
                         <p className={styles.title}>{category.title}</p>
-                        <button>Shop Now</button>
+                        <button><Link to='/products' className={styles.Link}>Shop Now</Link></button>
                     </div>
                 </div>
             ))}

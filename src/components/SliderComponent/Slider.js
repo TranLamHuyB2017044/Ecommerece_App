@@ -2,7 +2,7 @@ import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutl
 import { sliderItems } from "../../data";
 import styles from "./Slider.module.scss";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 function Slider() {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = () => {
@@ -23,7 +23,7 @@ function Slider() {
             <div className={styles.slider_info}>
               <h2 className={styles.title}>{item.title}</h2>
               <p className={styles.desc}>{item.desc}</p>
-              <button>Shop Now</button>
+              <button><Link to='/products' className={styles.Link}>Shop Now</Link></button>
             </div>
           </div>
         ))}

@@ -1,14 +1,24 @@
+@import '../GlobalStyles/GlobalStyles.scss';
+
+
 .Footer_container{
     display: flex;
     justify-content: space-between;
     padding: 2rem;
     background-color: #f1dff3;
+    @include responsive(phone){
+        flex-direction: column;
+        align-items: center;
+    }
     .footer_left{
         flex: 1;
         padding: 10px;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        @include responsive(phone){
+            align-items: center;
+        }
         .name{
             font-size: 3rem;
             font-weight: bold;
@@ -34,7 +44,12 @@
         justify-content: space-around;
         margin-top: 5px;
         position: relative;
-
+        @include responsive(phone){
+            display: none;
+        }
+        @include responsive(tablet){
+            gap: 1rem;
+        }
         p{
             font-weight: bold;
             font-size: 1.8rem;

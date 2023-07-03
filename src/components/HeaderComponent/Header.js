@@ -17,10 +17,10 @@ function Header() {
             <div className={styles.header_center}>CAMILE.</div>
             <div className={styles.header_right}>
                 <p>Stores</p>
-                <Link className={styles.login} to='/login'>Sign In</Link>
+                <Link style={{textDecoration:'none', color:'black'}}  to='/login'><p className={styles.login} >Sign In</p></Link>
                 <IconButton aria-label="cart">
                     <Badge badgeContent={4} color="secondary">
-                        <ShoppingCartOutlinedIcon />
+                        <Link to='/cart'><ShoppingCartOutlinedIcon /></Link>
                     </Badge>
                 </IconButton>
             </div>

@@ -1,3 +1,5 @@
+@import '../GlobalStyles/GlobalStyles.scss';
+
 .Products_container{
     display: flex;
     justify-content: space-between;
@@ -12,6 +14,7 @@
         margin: 5px;
         .product_image{
             height: 100%;
+            
             img{
                 height: 100%;
             }
@@ -30,6 +33,9 @@
             justify-content: center;
             transition: all 0.5s ease;
             cursor: pointer;
+            @include responsive(phone){
+                margin-right: 12rem;
+            }
             &:hover{
                 opacity: 1;
             }

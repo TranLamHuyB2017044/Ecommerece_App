@@ -1,3 +1,4 @@
+@import '../../components/GlobalStyles/GlobalStyles.scss';
 .Title{
     font-size: 3rem;
     font-weight: 600;
@@ -10,9 +11,17 @@
     padding: 1.5rem;
     margin: 2rem;
     justify-items: center;
+    @include responsive(phone){
+        flex-direction: column;
+        gap: 2rem;
+    }
+
     select{
         padding: 10px;
         margin-top: -4px;
+        @include responsive(phone){
+            padding-left: 15px;
+        }
 
     }
     .filter_left{
@@ -25,6 +34,8 @@
         display: flex;
         gap: 1rem;
         font-size: 2rem;
-        
+        @include responsive(tablet){
+            gap: 2rem;
+        }
     }
 }

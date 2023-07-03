@@ -1,15 +1,27 @@
+@import '../../components/GlobalStyles/GlobalStyles.scss';
 .wrapper{
     display: flex;
-    height: 800px;
     margin-top: 4rem;
+    @include responsive(phone){
+        flex-direction: column;
+    }
+    @include responsive(tablet){
+        flex-direction: column;
+    }
     .image_container{
         flex: 1;
         display: flex;
         justify-content: center;
-        height: 80%;
+        height: 80vh;
+        padding-bottom: 1rem;
+        @include responsive(phone){
+            height: 40vh;
+        }
         img{
-            height: 100%;
             object-fit: cover;
+            @include responsive(tablet){
+                height: 60vh;
+            }
         }
     }
     .info{
@@ -19,6 +31,15 @@
         gap: 2rem;
         justify-content: flex-start;
         padding: 3rem;
+        @include responsive(phone){
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        @include responsive(tablet){
+            gap: 1rem;
+            
+        }
         .product_name{
             font-size: 2.5rem;
             font-weight: normal;
@@ -33,18 +54,26 @@
         .Colors{
             display: flex;
             gap: 2.6rem;
+            @include responsive(tablet){
+                margin-top: 1rem;
+            }
             .color{
                 border-radius: 50%;
                 cursor: pointer;
                 padding: 1px;
                 width: 25px;
                 height: 25px;
+                @include responsive(phone){
+                   padding: 3px 4px;
+                }
+
             }
         }
         .Size{
             display: flex;
             gap: 1rem;
             margin-left: 3rem;
+
             p{
                 font-size: 2rem;
                 opacity: 0.7;

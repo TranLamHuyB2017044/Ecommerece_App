@@ -1,8 +1,17 @@
+@import '../GlobalStyles/GlobalStyles.scss';
+
+
 .Newsletter_container{
     display: flex;
     height: 500px;
     padding: 3rem;
-    
+    @include responsive(phone){
+        flex-direction: column-reverse;
+    }
+    @include responsive(tablet){
+        flex-direction: column-reverse;
+        margin-top: 10rem;
+    }
     .Newsletter_content{
         display: flex;
         flex-direction: column;

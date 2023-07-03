@@ -3,6 +3,7 @@ import styles from "./Products.module.scss";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { Link } from "react-router-dom";
 function Products() {
   return (
     <div className={styles.Products_container}>
@@ -16,9 +17,9 @@ function Products() {
             <div className={styles.icon}>
               <ShoppingCartOutlinedIcon />
             </div>
-            <div className={styles.icon}>
-              <SearchOutlinedIcon />
-            </div>
+            <Link to='/detail' className={styles.icon}>
+              <SearchOutlinedIcon style={{color: '#000'}} />
+            </Link>
             <div className={styles.icon}>
               <FavoriteBorderOutlinedIcon />
             </div>
