@@ -3,7 +3,17 @@ import Header from '../../components/HeaderComponent/Header';
 import NavBar from '../../components/NavBarComponent/NavBar';
 import Footer from '../../components/FooterComponent/Footer';
 import styles from './Detail.module.scss'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 function DetailProduct() {
+    const [product, setproduct] = useState([])
+    useEffect(() =>{
+        const productList = async () => {
+            const rs = await axios.get('http://localhost:5000/api/product/')
+            setproduct(rs.data)
+        }
+        productList();
+    }, [])
     return ( 
         <div className="Detail_Container">
             <Header/>
@@ -11,23 +21,21 @@ function DetailProduct() {
             <Announcement/>
             <div className={styles.wrapper}>
                 <div className={styles.image_container}>
-                    <img src='https://www.cuyana.com/dw/image/v2/BDQQ_PRD/on/demandware.static/-/Sites-master-catalog-cuyana/default/dwcd186d6f/images/2023_4April/gathered-linen-dress/PDP_1080x1350_SU23_LinenGatheredBackDress_Navy_6727.jpg?sw=1280&sh=1920' alt='img-detail' />
+                    <img src={product.img} alt='img-detail' />
                 </div>
                 <div className={styles.info}>
                     <h2 className={styles.product_name}>
-                        Sensual silhouettes in lightweight linen
+                        {product.title}
                     </h2>
                     <p className={styles.description}>
-                        There are many variations of passages of Lorem Ipsum available, but
-                        the majority have suffered alteration in some form, by injected
-                        humour, or randomised words which don’t look even slightly believable.
+                        {product.desc}
                     </p>
                     <p className={styles.price}>20$</p>
                     <div className={styles.Colors}>
                         <p style={{fontWeight:'500'}}>Color: </p>
                         <div className={styles.color} style={{
-                            color: 'navy',
-                            backgroundColor: 'navy'
+                            color: product.color,
+                            backgroundColor: product.color
                         }}>a</div>
                         <div className={styles.color} style={{
                             color: 'black',
@@ -40,7 +48,7 @@ function DetailProduct() {
                         <div className={styles.Size}>
                             <p>Size</p>
                             <select>
-                                <option selected>XS</option>
+                                <option selected>{product.size}</option>
                                 <option>S</option>
                                 <option>M</option>
                                 <option>L</option>

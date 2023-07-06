@@ -11,7 +11,7 @@ function Categories() {
                     </div>
                     <div className={styles.category_info}>
                         <p className={styles.title}>{category.title}</p>
-                        <button><Link to='/products' className={styles.Link}>Shop Now</Link></button>
+                        <button><Link to={`/products/${category.cat}`} className={styles.Link}>Shop Now</Link></button>
                     </div>
                 </div>
             ))}
