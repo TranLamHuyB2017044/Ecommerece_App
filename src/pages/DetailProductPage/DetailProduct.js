@@ -4,16 +4,28 @@ import NavBar from '../../components/NavBarComponent/NavBar';
 import Footer from '../../components/FooterComponent/Footer';
 import styles from './Detail.module.scss'
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import {publicRequest} from '../../request'
+import { useLocation } from 'react-router-dom';
 function DetailProduct() {
-    const [product, setproduct] = useState([])
+    const [product, setproduct] = useState({})
+    const [quantity, setQuantity] = useState(1)
+    const localtion  = useLocation()
+    const id = localtion.pathname.split('/')[2]
     useEffect(() =>{
         const productList = async () => {
-            const rs = await axios.get('http://localhost:5000/api/product/')
+            const rs = await publicRequest.get(`/product/${id}/`)
             setproduct(rs.data)
         }
         productList();
-    }, [])
+    }, [id])
+    const handlePlus = () => {
+        setQuantity(prev => prev+1)
+    }
+    const handleMinus = () => {
+        if(quantity > 1){
+            setQuantity(prev => prev-1)
+        }
+    }
     return ( 
         <div className="Detail_Container">
             <Header/>
@@ -48,20 +60,17 @@ function DetailProduct() {
                         <div className={styles.Size}>
                             <p>Size</p>
                             <select>
-                                <option selected>{product.size}</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
+                                {product.size?.map((size, index) => (
+                                    <option value={size} key={index}>{size}</option>
+                                ))}
                             </select>
                         </div>
                     </div>
                     <div className={styles.Quantity}>
                         <p className={styles.quantity}>Quantity: </p>
-                        <p className={styles.minus}>-</p>
-                        <p className={styles.number}>1</p>
-                        <p className={styles.plus}>+</p>
+                        <p className={styles.minus} onClick={handleMinus}>-</p>
+                        <p className={styles.number}>{quantity}</p>
+                        <p className={styles.plus} onClick={handlePlus}>+</p>
                     </div>
                     <div className={styles.AddCart_Button}>
                         <button>ADD TO CART</button>
