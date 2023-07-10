@@ -6,9 +6,14 @@ import styles from './Detail.module.scss'
 import { useEffect, useState } from 'react';
 import {publicRequest} from '../../request'
 import { useLocation } from 'react-router-dom';
+import {useDispatch} from 'react-redux'
+import {addProduct} from '../../redux/cartRedux';
 function DetailProduct() {
     const [product, setproduct] = useState({})
     const [quantity, setQuantity] = useState(1)
+    const [color, setColor] = useState("")
+    const [size, setSize] = useState("")
+    const dispatch = useDispatch()
     const localtion  = useLocation()
     const id = localtion.pathname.split('/')[2]
     useEffect(() =>{
@@ -18,13 +23,17 @@ function DetailProduct() {
         }
         productList();
     }, [id])
-    const handlePlus = () => {
-        setQuantity(prev => prev+1)
-    }
-    const handleMinus = () => {
-        if(quantity > 1){
-            setQuantity(prev => prev-1)
+    const handleClick = (type) => {
+        if(type === 'incr'){
+            setQuantity(prev => prev+1)
+        }else{
+            if(quantity > 1){
+                setQuantity(prev => prev-1)
+            }
         }
+    }
+    const handleAddCart = () => {
+        dispatch(addProduct({...product, quantity, size, color}))
     }
     return ( 
         <div className="Detail_Container">
@@ -42,24 +51,21 @@ function DetailProduct() {
                     <p className={styles.description}>
                         {product.desc}
                     </p>
-                    <p className={styles.price}>20$</p>
+                    <p className={styles.price}>{product.price} $</p>
                     <div className={styles.Colors}>
                         <p style={{fontWeight:'500'}}>Color: </p>
-                        <div className={styles.color} style={{
-                            color: product.color,
-                            backgroundColor: product.color
-                        }}>a</div>
-                        <div className={styles.color} style={{
-                            color: 'black',
-                            backgroundColor: 'black'
-                        }}>a</div>
-                        <div className={styles.color} style={{
-                            color: '#ccc',
-                            backgroundColor: '#ccc'
-                        }}>a</div>
+                        {product.color?.map(color => (
+                            <div key={color} className={styles.color} style={{
+                                color: color,
+                                backgroundColor: color
+                            }}
+                            onClick={() => setColor(color)}
+                            >a</div>
+                        ))}
+
                         <div className={styles.Size}>
                             <p>Size</p>
-                            <select>
+                            <select onChange={(e) => setSize(e.target.value)}>
                                 {product.size?.map((size, index) => (
                                     <option value={size} key={index}>{size}</option>
                                 ))}
@@ -68,12 +74,12 @@ function DetailProduct() {
                     </div>
                     <div className={styles.Quantity}>
                         <p className={styles.quantity}>Quantity: </p>
-                        <p className={styles.minus} onClick={handleMinus}>-</p>
+                        <p className={styles.minus} onClick={() => handleClick('desc')}>-</p>
                         <p className={styles.number}>{quantity}</p>
-                        <p className={styles.plus} onClick={handlePlus}>+</p>
+                        <p className={styles.plus} onClick={() => handleClick('incr')}>+</p>
                     </div>
                     <div className={styles.AddCart_Button}>
-                        <button>ADD TO CART</button>
+                        <button onClick={handleAddCart}>ADD TO CART</button>
                     </div>
                 </div>
             </div>

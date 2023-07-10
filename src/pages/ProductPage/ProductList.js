@@ -30,18 +30,17 @@ function ProductList() {
                 <div className={styles.filter_left}>
                     <p>Filter Product: </p>
                     <select name="color" onChange={handleFilter}>
-                        <option  >Color</option>
+                        <option defaultChecked>Color</option>
                         <option>Red</option>
                         <option>Blue</option>
-                        <option>White</option>
-                        <option>Black</option>
                         <option>Green</option>
+                        <option>Black</option>
                         <option>Pink</option>
                         <option>Gray</option>
                         <option>Yellow</option>
                     </select>
                     <select name="size" onChange={handleFilter}>
-                        <option  >Size</option>
+                        <option defaultChecked>Size</option>
                         <option>S</option>
                         <option>M</option>
                         <option>L</option>
