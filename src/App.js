@@ -6,6 +6,8 @@ import DetailProduct from './pages/DetailProductPage/DetailProduct'
 import Register from "./pages/AuthPage/Register";
 import SignIn from "./pages/AuthPage/SignIn";
 function App() {
+
+
   return (
     <BrowserRouter>
       <Routes>

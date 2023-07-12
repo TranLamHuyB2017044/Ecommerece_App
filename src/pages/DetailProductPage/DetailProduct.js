@@ -5,8 +5,8 @@ import Footer from '../../components/FooterComponent/Footer';
 import styles from './Detail.module.scss'
 import { useEffect, useState } from 'react';
 import {publicRequest} from '../../request'
-import { useLocation } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
 import {addProduct} from '../../redux/cartRedux';
 function DetailProduct() {
     const [product, setproduct] = useState({})
@@ -16,6 +16,8 @@ function DetailProduct() {
     const dispatch = useDispatch()
     const localtion  = useLocation()
     const id = localtion.pathname.split('/')[2]
+    const user = useSelector(state => state.user.currentUser);
+    const navigate = useNavigate()
     useEffect(() =>{
         const productList = async () => {
             const rs = await publicRequest.get(`/product/${id}/`)
@@ -33,7 +35,12 @@ function DetailProduct() {
         }
     }
     const handleAddCart = () => {
-        dispatch(addProduct({...product, quantity, size, color}))
+        if(!user){
+            navigate('/login')
+        }else{
+            dispatch(addProduct({...product, quantity, size, color}))
+            alert('Added to the cart')
+        }
     }
     return ( 
         <div className="Detail_Container">

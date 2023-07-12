@@ -5,7 +5,10 @@ import NavBar from "../../components/NavBarComponent/NavBar";
 import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
 function Cart() {
+
   const cart = useSelector((state) => state.cart);
+  const Total = cart.products.reduce((a, v) => a = a + (v.price*v.quantity), 0)
+  
   return (
     <div className={styles.cart_container}>
       <Header />
@@ -23,8 +26,8 @@ function Cart() {
         </div>
         <div className={styles.bot}>
             <div className={styles.bot_left}>
-                {cart.products.map(product => (
-                    <div className={styles.product_info}>
+                {cart.products.map((product, index) => (
+                    <div key={index} className={styles.product_info}>
                         <div className={styles.info}>
                             <div className={styles.img}>
                             <img src={product.img} alt="shoes" />
@@ -66,7 +69,7 @@ function Cart() {
               <h1 className={styles.form_title}>ORDER SUMMARY</h1>
               <div className={styles.form_group}>
                 <p className={styles.subtotal}>SubTotal: </p>
-                <p className={styles.sub_price}>$ {cart.total}</p>
+                <p className={styles.sub_price}>$ {Total}</p>
               </div>
               <div className={styles.form_group}>
                 <p className={styles.estimate}>Estimated Shipping: </p>
@@ -78,14 +81,13 @@ function Cart() {
               </div>
               <div className={styles.form_group}>
                 <p className={styles.total}>Total: </p>
-                <p className={styles.total_price}>$ {cart.total}</p>
+                <p className={styles.total_price}>$ {Total}</p>
               </div>
               <button className={styles.submit}>Checkout Now</button>
             </form>
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
