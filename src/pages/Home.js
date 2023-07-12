@@ -1,7 +1,7 @@
 import Categories from "../components/CategoriesComponent/Categories";
 import Footer from "../components/FooterComponent/Footer";
 import Newsletter from "../components/NewsletterComponent/Newsletter";
-import Products from "../components/ProductsComponent/Products";
+import PopularProducts from "../components/PopularProductsComponent/PopularProducts";
 import Slider from "../components/SliderComponent/Slider";
 import Header from "../components/HeaderComponent/Header";
 import Announcement from "../components/AnnouncementComponent/Announcement";
@@ -18,7 +18,7 @@ function Home() {
             <h1 style={{textAlign: 'center'}}>Get Inspire</h1>
             <Categories/>
             <h1 style={{textAlign: 'center'}}>Popular Products</h1>
-            <Products/>
+            <PopularProducts/>
             <h1 style={{
                 textAlign: 'center',
                 borderTop: '1px solid #ccc',

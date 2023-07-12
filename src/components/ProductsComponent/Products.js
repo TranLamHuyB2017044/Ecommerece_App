@@ -14,7 +14,7 @@ function Products({ cat, filters, sort }) {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/product/?category=${cat}`
+            ? `http://localhost:5000/api/product/${cat}`
             : "http://localhost:5000/api/product/"
         );
         setProduct(res.data);
@@ -71,7 +71,7 @@ function Products({ cat, filters, sort }) {
               </div>
             </div>
           ))
-        : products.slice(0, 8).map((product) => (
+        : products.map((product) => (
             <div key={product._id} className={styles.product_content}>
               <div className={styles.product_image}>
                 <img src={product.img} alt={product.img} />

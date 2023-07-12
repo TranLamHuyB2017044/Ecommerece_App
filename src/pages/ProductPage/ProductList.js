@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 function ProductList() {
     const location = useLocation()
-    const category = location.pathname.split('/')[2]
+    const category = location.search
     const [filters, setFliter] = useState({})
     const [sort, setSort] = useState("newest")
     const handleFilter = (e) => {
