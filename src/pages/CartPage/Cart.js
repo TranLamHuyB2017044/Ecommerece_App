@@ -4,11 +4,16 @@ import Header from "../../components/HeaderComponent/Header";
 import NavBar from "../../components/NavBarComponent/NavBar";
 import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
+import { removeProduct } from "../../redux/cartRedux";
+import { useDispatch } from "react-redux";
 function Cart() {
 
   const cart = useSelector((state) => state.cart);
   const Total = cart.products.reduce((a, v) => a = a + (v.price*v.quantity), 0)
-  
+  const dispatch = useDispatch()
+  const handleRemove = () =>{
+    dispatch(removeProduct({...cart[0]}))
+  }
   return (
     <div className={styles.cart_container}>
       <Header />
@@ -60,6 +65,9 @@ function Cart() {
                             <p className={styles.plus}>+</p>
                             </div>
                             <div className={styles.price}>$ {product.price*product.quantity}</div>
+                        </div>
+                        <div onClick={handleRemove} className={styles.remove}>
+                          &times;
                         </div>
                     </div>
                 ))}

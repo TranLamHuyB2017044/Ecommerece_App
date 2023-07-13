@@ -8,7 +8,6 @@ import SignIn from "./pages/AuthPage/SignIn";
 import { useSelector } from "react-redux";
 function App() {
   const user = useSelector(state => state.user.currentUser)
-  console.log(user);
   const ProtectedRoute = () => {
     if (user) {
       return <Navigate to='/' replace />;
