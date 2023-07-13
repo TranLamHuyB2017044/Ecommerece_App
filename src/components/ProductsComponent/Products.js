@@ -25,7 +25,7 @@ function Products({ cat, filters, sort }) {
     getProducts();
   }, [cat]);
   useEffect(() => {
-    cat &&
+    
       setFiltersProduct(
         products.filter((item) =>
           Object.entries(filters).every(([key, value]) =>
@@ -34,7 +34,7 @@ function Products({ cat, filters, sort }) {
         )
       );
     // eslint-disable-next-line
-  }, [cat, filters, products]);
+  }, [ filters, products]);
   useEffect(() => {
     if((sort === 'newest')) {
       setFiltersProduct((prev) =>
@@ -52,8 +52,8 @@ function Products({ cat, filters, sort }) {
   }, [sort])
   return (
     <div className={styles.Products_container}>
-      {cat
-        ? filtersProduct.map((product) => (
+      
+        { filtersProduct.map((product) => (
             <div key={product._id} className={styles.product_content}>
               <div className={styles.product_image}>
                 <img src={product.img} alt={product.img} />
@@ -71,24 +71,7 @@ function Products({ cat, filters, sort }) {
               </div>
             </div>
           ))
-        : products.map((product) => (
-            <div key={product._id} className={styles.product_content}>
-              <div className={styles.product_image}>
-                <img src={product.img} alt={product.img} />
-              </div>
-              <div className={styles.product_info}>
-                <div className={styles.icon}>
-                  <ShoppingCartOutlinedIcon />
-                </div>
-                <Link to={`/detail/${product._id}`} className={styles.icon}>
-                  <SearchOutlinedIcon style={{ color: "#000" }} />
-                </Link>
-                <div className={styles.icon}>
-                  <FavoriteBorderOutlinedIcon />
-                </div>
-              </div>
-            </div>
-          ))}
+        } 
     </div>
   );
 }

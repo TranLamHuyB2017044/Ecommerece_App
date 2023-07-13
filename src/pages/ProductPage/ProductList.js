@@ -25,12 +25,11 @@ function ProductList() {
             <Header/>
             <NavBar/>
             <Announcement/>
-            <div className={styles.Title}>Dresses</div>
             <div className={styles.Filters_container}>
                 <div className={styles.filter_left}>
                     <p>Filter Product: </p>
                     <select name="color" onChange={handleFilter}>
-                        <option defaultChecked>Color</option>
+                        <option defaultChecked >Color</option>
                         <option>Red</option>
                         <option>Blue</option>
                         <option>Green</option>
@@ -40,7 +39,7 @@ function ProductList() {
                         <option>Yellow</option>
                     </select>
                     <select name="size" onChange={handleFilter}>
-                        <option defaultChecked>Size</option>
+                        <option defaultChecked >Size</option>
                         <option>S</option>
                         <option>M</option>
                         <option>L</option>
