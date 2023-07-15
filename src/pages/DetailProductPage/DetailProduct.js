@@ -8,6 +8,7 @@ import { publicRequest } from "../../request";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartRedux";
+import MyAlert from '../../components/AlertComponent/Alert'
 function DetailProduct() {
   const [product, setproduct] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -34,7 +35,7 @@ function DetailProduct() {
   };
   const handleAddCart = () => {
       dispatch(addProduct({ ...product, quantity, size, color }));
-      alert("Added to the cart");
+      MyAlert.Toast('success','Product added successfully')
   };
   return (
     <div className="Detail_Container">

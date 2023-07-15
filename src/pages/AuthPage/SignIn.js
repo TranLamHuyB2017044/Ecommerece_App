@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import {imgLogin} from '../../data'
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-  
+import MyAlert from "../../components/AlertComponent/Alert";  
 function SignIn() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -33,11 +33,13 @@ function SignIn() {
       const user = await publicRequest.post('/auth/login', {username, password})
       dispatch(Login(user))
       if(user){
-        alert('login successful')
+        MyAlert.Alert(
+          'success', 'Login successfully'
+        )
         navigate('/')
       }
     } catch (error) {
-      alert('wrong username or password')
+      MyAlert.Alert('error', 'Username or password is incorrect')
     }
     
   }

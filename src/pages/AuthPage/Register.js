@@ -13,6 +13,7 @@ import { publicRequest } from "../../request";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { SignUp } from "../../redux/userRedux";
+import MyAlert from "../../components/AlertComponent/Alert";  
 
   
 function Register() {
@@ -45,10 +46,10 @@ function Register() {
     try {
       const rs = await publicRequest.post('/auth/register', newUser)
       dispatch(SignUp(rs))
-      alert('successfully registered')
+      MyAlert.Alert('success', 'Registered successfully')
       navigate('/login')
     } catch (error) {
-      alert(error.message)
+      MyAlert.Alert('error', 'Failed to register username already registered');
     }
 
   }

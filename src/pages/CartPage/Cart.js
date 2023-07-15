@@ -6,14 +6,28 @@ import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
 import { removeProduct } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
-function Cart() {
+import { useEffect, useState } from "react";
 
+function Cart() {
   const cart = useSelector((state) => state.cart);
   const Total = cart.products.reduce((a, v) => a = a + (v.price*v.quantity), 0)
   const dispatch = useDispatch()
-  const handleRemove = () =>{
-    dispatch(removeProduct({...cart[0]}))
-  }
+  const [quantity, setQuantity] = useState();
+  useEffect(() => {
+    const number = cart.products.map(product => 
+      setQuantity(product.quantity)     
+    )
+  },[])
+  const handleClick = (type) => {
+
+    if (type === "incr") {
+      setQuantity((prev) => prev + 1);
+    } else {
+      if (quantity > 1) {
+        setQuantity((prev) => prev - 1);
+      }
+    }
+  };
   return (
     <div className={styles.cart_container}>
       <Header />
@@ -60,14 +74,14 @@ function Cart() {
                         </div>
                         <div className={styles.prices}>
                             <div className={styles.Quantity}>
-                            <p className={styles.minus}>-</p>
-                            <p className={styles.number}>{product.quantity}</p>
-                            <p className={styles.plus}>+</p>
+                            <p className={styles.minus} onClick={() => handleClick('desc')}>-</p>
+                            <p className={styles.number}>{quantity}</p>
+                            <p className={styles.plus} onClick={() => handleClick('incr')}>+</p>
                             </div>
-                            <div className={styles.price}>$ {product.price*product.quantity}</div>
+                            <div className={styles.price}>$ {product.price*quantity}</div>
                         </div>
-                        <div onClick={handleRemove} className={styles.remove}>
-                          &times;
+                        <div  className={styles.remove}>
+                          <p className={product._id} onClick={() => dispatch(removeProduct(index))}>&times;</p>
                         </div>
                     </div>
                 ))}

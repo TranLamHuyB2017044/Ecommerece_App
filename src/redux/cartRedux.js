@@ -12,8 +12,8 @@ const CartSlice = createSlice({
         state.products.push(action.payload);
     },
     removeProduct: (state, action) => {
+      state.products.splice(action.payload, 1)
       state.quantity -=1;
-      state.products.shift(action.payload);
   },
   }
 });
