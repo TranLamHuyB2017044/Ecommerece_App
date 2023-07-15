@@ -12,6 +12,7 @@
         display: flex;
         justify-content: flex-start;
         gap: 2rem;
+        margin-left: 3rem;
         @include responsive(phone){
             display: none;
         }
@@ -39,6 +40,7 @@
         text-align: center;
         font-size: 3rem;
         font-weight: bold;
+        margin-left: 3rem;
         @include responsive(phone){
             margin-right: 2rem;
         }
@@ -48,26 +50,42 @@
         display: flex;
         justify-content: flex-end;
         gap: 2rem;
+        margin-right: 3rem;
         cursor: pointer;
         @include responsive(phone){
             gap: 1rem;
         }
+        .dropdown{
+            position: relative;
+            .name{
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+            .menu{
+                list-style-type: none;
+                border: 1px solid grey;
+                box-shadow: 1px 3px 8px #000;
+                background-color: white;
+                width: 150px;
+                position: absolute;
+                right: 10px;
+                z-index: 1;
+                .menu_item{
+                    margin: 10px 0;
+                    padding: 0 10px;
+                    font-weight: 500;
+                    &:hover{
+                        color: teal;
+                        opacity: 1.6;
+                    }
+                }
+            }
+        }
         p{
             padding: 1rem;
             position: relative;
-            &::after {
-                content: "";
-                width: 0;
-                height: 1px;
-                background: #000;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                transition: all 0.2s linear;
-            } 
-            &:hover::after {
-                width: 100%;
-            }
+
         }
         .login{
             padding: 1rem;
@@ -96,6 +114,63 @@
             font-size: 2.7rem;
             margin-top: 2px;
             color: black;
+        }
+        .cart_dropdown{
+            
+            position: relative;
+            
+            .showCart{
+                position: absolute;
+                right: 1rem;
+                top: 3rem;
+                z-index: 1;
+                background-color: #fff;
+                box-shadow: 1px 3px 8px #000;
+                .cart_menu{    
+                    list-style: none;
+                    justify-content: space-between;
+                    width: 400px;
+                    display: flex;
+                    padding: 1rem;
+                    &:hover{
+                        background-color: #ccc;
+
+                    }
+                    .menu_item{
+                        background-color: white;
+                        margin: 10px ;
+                        font-weight: 500;
+
+                        .item_name{
+                            flex: 3;
+                        }
+                        .item_price{
+                            flex: 1;
+                        }
+                        &:hover{
+                            color: teal;
+                            opacity: 1.6;
+                        }
+                    }
+                }
+                .view_cart{
+                    margin: 10px;
+                    border: 1px solid teal;
+                    padding: 10px 15px;
+                    float: right;
+                    cursor: pointer;
+                }
+                .cart_menu_empty{
+                    width: 400px;
+                    height: 200px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    justify-items: center;
+                    font-size: 1.6rem;
+                }
+            }
         }
     }
 }

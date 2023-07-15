@@ -14,11 +14,13 @@ function Cart() {
   const dispatch = useDispatch()
   const [quantity, setQuantity] = useState();
   useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
     const number = cart.products.map(product => 
       setQuantity(product.quantity)     
     )
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-  const handleClick = (type) => {
+  const handleClick = (type, index) => {
 
     if (type === "incr") {
       setQuantity((prev) => prev + 1);
@@ -74,9 +76,9 @@ function Cart() {
                         </div>
                         <div className={styles.prices}>
                             <div className={styles.Quantity}>
-                            <p className={styles.minus} onClick={() => handleClick('desc')}>-</p>
+                            <p className={styles.minus} onClick={() => handleClick('desc', index)}>-</p>
                             <p className={styles.number}>{quantity}</p>
-                            <p className={styles.plus} onClick={() => handleClick('incr')}>+</p>
+                            <p className={styles.plus} onClick={() => handleClick('incr', index)}>+</p>
                             </div>
                             <div className={styles.price}>$ {product.price*quantity}</div>
                         </div>
