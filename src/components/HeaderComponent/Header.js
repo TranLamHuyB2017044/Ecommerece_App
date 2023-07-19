@@ -1,4 +1,4 @@
-import { Button, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 import styles from "./Header.module.scss";
@@ -7,15 +7,16 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 import { Logout } from "../../redux/userRedux";
 import localStorage from "redux-persist/es/storage";
-import { useState } from "react";
+import {  useState, useRef } from "react";
 function Header() {
   const quantity = useSelector((state) => state.cart.quantity);
   const username = useSelector((state) => state.user.currentUser);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [productsSearch, setProductsSearch] = useState('');
   const cartItems = useSelector((state) => state.cart.products);
-  console.log(cartItems);
   const name = username?.data.others.firstname;
+  const refInput = useRef()
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("persist:root");
@@ -23,13 +24,29 @@ function Header() {
     navigate("/login");
     window.location.reload();
   };
+  const handleChange = () => {
+      navigate(`/search/?search=${productsSearch}`)
+      refInput.current.value =''
+  }
+  const handleEnterChange = (e) => {
+    if(e.key === "Enter") {
+        navigate(`/search/?search=${productsSearch}`)
+        refInput.current.value =''
+    }
+    
+  }
   return (
     <div className={styles.header_container}>
       <div className={styles.header_left}>
         <span className={styles.language}>EN</span>
         <div className={styles.Search}>
-          <input placeholder="Find something..." />
-          <SearchIcon />
+          <input 
+            ref={refInput}
+            placeholder="Find something..." 
+            onChange={() => setProductsSearch(refInput.current.value)}
+            onKeyDown={handleEnterChange}
+            />
+          <SearchIcon  onClick ={handleChange}/>
         </div>
       </div>
       <div className={styles.header_center}>CAMILE.</div>
@@ -87,14 +104,14 @@ function Header() {
                             <p className={styles.item_name}>{item.title}</p>
                           </li>
                           <li className={styles.cart_item}>
-                            <p className={styles.item_price}>{item.price} $</p>
+                            <p className={styles.item_price}>{item.price}$</p>
                           </li>
                         </ul>
                       ))}
                   <div className={styles.showbuttons}>
                     {showCart && (
                       <Link to="/cart">
-                        <button className={styles.view_cart}>View Cart</button>
+                        <p className={styles.view_cart}>View Cart</p>
                       </Link>
                     )}
                   </div>

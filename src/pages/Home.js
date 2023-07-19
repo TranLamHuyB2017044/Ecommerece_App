@@ -15,7 +15,7 @@ function Home() {
             <Header />
             <NavBar/>
             <Slider/>
-            <h1 style={{textAlign: 'center'}}>Get Inspire</h1>
+            <h1 style={{textAlign: 'center', marginTop: '10px'}}>Get Inspire</h1>
             <Categories/>
             <h1 style={{textAlign: 'center'}}>Popular Products</h1>
             <PopularProducts/>
