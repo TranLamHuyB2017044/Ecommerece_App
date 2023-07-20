@@ -4,11 +4,11 @@ import NavBar from "../../components/NavBarComponent/NavBar";
 import Footer from "../../components/FooterComponent/Footer";
 import styles from "./Detail.module.scss";
 import { useEffect, useState } from "react";
-import { publicRequest } from "../../request";
+import { publicRequest,usercRequest } from "../../request";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../redux/cartRedux";
-import MyAlert from '../../components/AlertComponent/Alert'
+import MyAlert from "../../components/AlertComponent/Alert";
 function DetailProduct() {
   const [product, setproduct] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -17,6 +17,8 @@ function DetailProduct() {
   const dispatch = useDispatch();
   const localtion = useLocation();
   const id = localtion.pathname.split("/")[2];
+  // const user = useSelector((state) => state.user.currentUser);
+  // const userId = user.data.others._id;
   useEffect(() => {
     const productList = async () => {
       const rs = await publicRequest.get(`/product/${id}/`);
@@ -33,9 +35,10 @@ function DetailProduct() {
       }
     }
   };
-  const handleAddCart = () => {
-      dispatch(addProduct({ ...product, quantity, size, color }));
-      MyAlert.Toast('success','Product added successfully')
+  const handleAddCart = async () => {
+    dispatch(addProduct({ ...product, quantity, size, color }));
+    // await usercRequest.put(`/user/${userId}`, { cart: id });
+    MyAlert.Toast("success", "Product added successfully");
   };
   return (
     <div className="Detail_Container">

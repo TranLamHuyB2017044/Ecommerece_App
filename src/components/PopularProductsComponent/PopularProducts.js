@@ -5,8 +5,10 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-function Products({cat}) {
+import { useSelector } from "react-redux";
+function Products({ cat }) {
   const [products, setProduct] = useState([]);
+  const user = useSelector((state) => state.user.currentUser);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -26,24 +28,31 @@ function Products({cat}) {
 
   return (
     <div className={styles.Products_container}>
-      { products.slice(0, 8).map((product) => (
-            <div key={product._id} className={styles.product_content}>
-              <div className={styles.product_image}>
-                <img src={product.img} alt={product.img} />
-              </div>
-              <div className={styles.product_info}>
-                <div className={styles.icon}>
-                  <ShoppingCartOutlinedIcon />
-                </div>
-                <Link to={`/detail/${product._id}`} className={styles.icon}>
-                  <SearchOutlinedIcon style={{ color: "#000" }} />
-                </Link>
-                <div className={styles.icon}>
-                  <FavoriteBorderOutlinedIcon />
-                </div>
-              </div>
+      {products.slice(0, 8).map((product) => (
+        <div key={product._id} className={styles.product_content}>
+          <div className={styles.product_image}>
+            <img src={product.img} alt={product.img} />
+          </div>
+          <div className={styles.product_info}>
+            <div className={styles.icon}>
+              <ShoppingCartOutlinedIcon />
             </div>
-          ))}
+            {user ? (
+              <Link to={`/detail/${product._id}`} className={styles.icon}>
+                <SearchOutlinedIcon style={{ color: "#000" }} />
+              </Link>
+            ) : (
+              <Link to={`/login`} className={styles.icon}>
+                <SearchOutlinedIcon style={{ color: "#000" }} />
+              </Link>
+            )}
+
+            <div className={styles.icon}>
+              <FavoriteBorderOutlinedIcon />
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

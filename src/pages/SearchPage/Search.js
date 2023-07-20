@@ -10,6 +10,7 @@ import GoToTop from "../../components/GoToTopComponent/GoToTop";
 import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../../request";
+import { useSelector } from "react-redux";
 function Search() {
   const [filters, setFliter] = useState({});
   const [sort, setSort] = useState("newest");
@@ -18,6 +19,8 @@ function Search() {
   const location = useLocation();
   const query = location.search;
   console.log(query);
+  const user = useSelector((state) => state.user.currentUser);
+
   const handleFilter = (e) => {
     const value = e.target.value;
     setFliter({
@@ -101,9 +104,15 @@ function Search() {
               <div className={styles.icon}>
                 <ShoppingCartOutlinedIcon />
               </div>
+              {user ? (
               <Link to={`/detail/${product._id}`} className={styles.icon}>
                 <SearchOutlinedIcon style={{ color: "#000" }} />
               </Link>
+            ) : (
+              <Link to={`/login`} className={styles.icon}>
+                <SearchOutlinedIcon style={{ color: "#000" }} />
+              </Link>
+            )}
               <div className={styles.icon}>
                 <FavoriteBorderOutlinedIcon />
               </div>
