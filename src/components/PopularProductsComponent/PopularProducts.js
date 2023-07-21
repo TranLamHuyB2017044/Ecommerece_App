@@ -4,8 +4,8 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
+import { publicRequest } from "../../request";
 function Products({ cat }) {
   const [products, setProduct] = useState([]);
   const user = useSelector((state) => state.user.currentUser);
@@ -13,10 +13,10 @@ function Products({ cat }) {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
+        const res = await publicRequest.get(
           cat
-            ? `http://localhost:5000/api/product/${cat}`
-            : "http://localhost:5000/api/product/"
+            ? `/product/${cat}`
+            : "/product/"
         );
         setProduct(res.data);
       } catch (error) {

@@ -4,9 +4,9 @@ import NavBar from "../../components/NavBarComponent/NavBar";
 import Footer from "../../components/FooterComponent/Footer";
 import styles from "./Detail.module.scss";
 import { useEffect, useState } from "react";
-import { publicRequest,usercRequest } from "../../request";
+import { publicRequest } from "../../request";
 import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartRedux";
 import MyAlert from "../../components/AlertComponent/Alert";
 function DetailProduct() {
