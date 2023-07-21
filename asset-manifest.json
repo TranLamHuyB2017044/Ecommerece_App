@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Ecommerece_Client/static/css/main.a8c9d1e8.css",
-    "main.js": "/Ecommerece_Client/static/js/main.7f6354bb.js",
+    "main.js": "/Ecommerece_Client/static/js/main.f452b886.js",
     "static/js/787.affa5bbf.chunk.js": "/Ecommerece_Client/static/js/787.affa5bbf.chunk.js",
     "index.html": "/Ecommerece_Client/index.html",
     "main.a8c9d1e8.css.map": "/Ecommerece_Client/static/css/main.a8c9d1e8.css.map",
-    "main.7f6354bb.js.map": "/Ecommerece_Client/static/js/main.7f6354bb.js.map",
+    "main.f452b886.js.map": "/Ecommerece_Client/static/js/main.f452b886.js.map",
     "787.affa5bbf.chunk.js.map": "/Ecommerece_Client/static/js/787.affa5bbf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a8c9d1e8.css",
-    "static/js/main.7f6354bb.js"
+    "static/js/main.f452b886.js"
   ]
 }
