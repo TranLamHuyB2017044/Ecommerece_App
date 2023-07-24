@@ -6,6 +6,7 @@ import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
 import { removeProduct } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import myAlert from '../../components/AlertComponent/Alert'
 // import { useEffect, useState } from "react";
 
 function Cart() {
@@ -28,6 +29,10 @@ function Cart() {
   //     }
   //   }
   // };
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    myAlert.Alert('success', 'Checkout completed !!')
+  }
   return (
     <div className={styles.cart_container}>
       <Header />
@@ -105,7 +110,7 @@ function Cart() {
                 <p className={styles.total}>Total: </p>
                 <p className={styles.total_price}>$ {Total}</p>
               </div>
-              <button className={styles.submit}>Checkout Now</button>
+              <button onClick={handleCheckout} className={styles.submit}>Checkout Now</button>
             </form>
           </div>
         </div>
