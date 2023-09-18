@@ -12,7 +12,7 @@ import MyAlert from "../../components/AlertComponent/Alert";
 function DetailProduct() {
   const [product, setproduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState("#8eaac0");
+  const [color, setColor] = useState("Gray");
   const [size, setSize] = useState("S");
   const dispatch = useDispatch();
   const localtion = useLocation();
@@ -54,19 +54,16 @@ function DetailProduct() {
           <p className={styles.description}>{product.desc}</p>
           <p className={styles.price}>{product.price} $</p>
           <div className={styles.Colors}>
-            <p style={{ fontWeight: "500" }}>Color: </p>
-            {product.color?.map((color) => (
-              <div
-                key={color}
+            <p>Color: </p>
+            {product.color?.map((color_item) => (
+              <button
+                key={color_item}
                 className={styles.color}
-                style={{
-                  color: color,
-                  backgroundColor: color,
-                }}
-                onClick={() => setColor(color)}
+                style={color === color_item ? {border: '0.5px solid teal'} : {border: 'none'}}
+                onClick={() => {setColor(color_item)}}
               >
-                a
-              </div>
+                {color_item}
+              </button>
             ))}
 
             <div className={styles.Size}>
@@ -90,6 +87,7 @@ function DetailProduct() {
               +
             </p>
           </div>
+            <p className={styles.inStock}>{product.inStock} pieces available</p>
           <div className={styles.AddCart_Button}>
             <button onClick={handleAddCart}>ADD TO CART</button>
           </div>

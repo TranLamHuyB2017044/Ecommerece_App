@@ -7,7 +7,7 @@ function NavBar() {
                 <Link to='/' className={styles.item}>Home</Link>
                 <Link to= '/products' className={styles.item}>Shop</Link>
                 <li  className={styles.item}>Shoes</li>
-                <li className={styles.item}>Jewelry</li>
+                <li className={styles.item}>Accessories</li>
                 <li className={styles.item}>New Arrive</li>
             </ul>
         </div>

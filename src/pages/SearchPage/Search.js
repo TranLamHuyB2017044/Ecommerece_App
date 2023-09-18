@@ -18,7 +18,6 @@ function Search() {
   const [filtersProduct, setFiltersProduct] = useState([]);
   const location = useLocation();
   const query = location.search;
-  console.log(query);
   const user = useSelector((state) => state.user.currentUser);
 
   const handleFilter = (e) => {

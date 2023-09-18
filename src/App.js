@@ -7,6 +7,9 @@ import Register from "./pages/AuthPage/Register";
 import SignIn from "./pages/AuthPage/SignIn";
 import { useSelector } from "react-redux";
 import Search from "./pages/SearchPage/Search";
+import Profile from "./pages/UserProfilePage/Profile";
+import EditProfile from "./pages/EditProfilePage/EditProfile";
+import Test from "./pages/Test";
 function App() {
   const user = useSelector(state => state.user.currentUser)
   const ProtectedRoute = () => {
@@ -16,6 +19,12 @@ function App() {
   
     return <Outlet />;
   };
+  const ProtectUser = () => {
+    if(user === null){
+      return <Navigate to='/login' replace />;
+    }
+    return <Outlet />;
+  }
   return (
     <BrowserRouter>
       <Routes>
@@ -28,6 +37,11 @@ function App() {
         </Route>
         <Route path="/cart" element={<Cart />} />
         <Route path="/search" element={<Search />} />
+        <Route element={<ProtectUser/>} >
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/profile/edit/:id" element={<EditProfile/>}/>
+        </Route>
+        <Route path="/3d" element={<Test/>} />
         <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
     </BrowserRouter>

@@ -1,14 +1,17 @@
 import axios from "axios";
 
-const BaseURL = "https://tranlamhuy-be-ecommerce.onrender.com/api/";
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YTNkNGQyNzM5YmU4YzdhYTY1Mzg5ZCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODcxNDg5MiwiZXhwIjoxNjg4OTc0MDkyfQ.E0-56o8iGGWtNAqtUoYzie37hki63CClUMJ2_8B21rs'
 
+const BaseURL = "http://localhost:5000/api/";
+// const token = JSON.parse(localStorage.getItem('persist:root'))
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWM2NTQ1OGY2OWFjNmQyYjJjMmVmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MzI5NDE5OCwiZXhwIjoxNjkzNTUzMzk4fQ.eCULlbi8NYlhIBXNT64H_DRg3GVLon7nJCAhxv7KalI'
+// const token = JSON.parse(localItem.user)?.currentUser?.data.accessToken
 
 export const publicRequest = axios.create({
   baseURL: BaseURL,
   
 });
 export const usercRequest = axios.create({
+  
   baseURL: BaseURL,
     headers: {token: `Bearer ${token}`}
 });

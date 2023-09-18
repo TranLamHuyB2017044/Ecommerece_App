@@ -6,6 +6,7 @@ import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
 import { removeProduct } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import myAlert from '../../components/AlertComponent/Alert'
 // import { useEffect, useState } from "react";
 
@@ -41,7 +42,7 @@ function Cart() {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>YOUR CART</h1>
         <div className={styles.top}>
-          <button className={styles.continue}>CONTINUE SHOPPING</button>
+          <Link to='/products'><button className={styles.continue}>CONTINUE SHOPPING</button></Link>
           <div className={styles.top_center}>
             <p>Shopping bag ({cart.quantity})</p>
             <p>Your Wishlist (0)</p>
@@ -63,15 +64,9 @@ function Cart() {
                             <p className={styles.id}>
                                 <span style={{ fontWeight: "bold" }}>ID:</span> {product._id}
                             </p>
-                            <span
-                                style={{ fontWeight: "bold", display: "flex", gap: "1rem" }}
-                            >
-                                Color: <div className={styles.colors} 
-                                style={{
-                                    color: product.color,
-                                    backgroundColor: product.color
-                                }}>a</div>
-                            </span>
+                            <p className={styles.size}>
+                                <span style={{ fontWeight: "bold" }}>Color:</span> {product.color}
+                            </p>
                             <p className={styles.size}>
                                 <span style={{ fontWeight: "bold" }}>Size:</span> {product.size}
                             </p>

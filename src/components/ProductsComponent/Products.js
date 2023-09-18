@@ -1,8 +1,8 @@
 // import { popularProducts } from "../../data";
 import styles from "./Products.module.scss";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+// import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+// import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -55,9 +55,9 @@ function Products({ cat, filters, sort }) {
             <img src={product.img} alt={product.img} />
           </div>
           <div className={styles.product_info}>
-            <div className={styles.icon}>
+            {/* <div className={styles.icon}>
               <ShoppingCartOutlinedIcon />
-            </div>
+            </div> */}
             {user ? (
               <Link to={`/detail/${product._id}`} className={styles.icon}>
                 <SearchOutlinedIcon style={{ color: "#000" }} />
@@ -67,9 +67,9 @@ function Products({ cat, filters, sort }) {
                 <SearchOutlinedIcon style={{ color: "#000" }} />
               </Link>
             )}
-            <div className={styles.icon}>
+            {/* <div className={styles.icon}>
               <FavoriteBorderOutlinedIcon />
-            </div>
+            </div> */}
           </div>
         </div>
       ))}

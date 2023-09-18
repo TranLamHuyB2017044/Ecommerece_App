@@ -10,19 +10,20 @@ import localStorage from "redux-persist/es/storage";
 import {  useState, useRef } from "react";
 function Header() {
   const quantity = useSelector((state) => state.cart.quantity);
-  const username = useSelector((state) => state.user.currentUser);
+  const userInfo = useSelector((state) => state.user.currentUser);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [productsSearch, setProductsSearch] = useState('');
   const cartItems = useSelector((state) => state.cart.products);
-  const name = username?.data.others.firstname;
+  const name = userInfo?.data?.others.username;
+  const avatarUser = userInfo?.data?.others.avatar
   const refInput = useRef()
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("persist:root");
-    Logout();
     navigate("/login");
-    window.location.reload();
+    Logout();
+    window.location.reload()
   };
   const handleChange = () => {
       navigate(`/search/?search=${productsSearch}`)
@@ -51,16 +52,21 @@ function Header() {
       </div>
       <div className={styles.header_center}>CAMILE.</div>
       <div className={styles.header_right}>
-        {username ? (
+        {userInfo ? (
           <div
-            onMouseLeave={() => setShowDropdown(false)}
-            onMouseOver={() => setShowDropdown(true)}
             className={styles.dropdown}
           >
             <p className={styles.name}>{name}</p>
+            <img 
+              src={avatarUser} 
+              alt="avatar_User"
+              // onMouseLeave={() => setShowDropdown(false)}
+              // onMouseOver={() => setShowDropdown(true)}
+              onClick={()=> setShowDropdown(!showDropdown)}
+            />
             {showDropdown && (
               <ul className={styles.menu}>
-                <li className={styles.menu_item}>My Profiile</li>
+                <Link style={{textDecoration: 'none', color: '#000'}} to='/profile'><li className={styles.menu_item}>My Profiile</li></Link>
                 <li className={styles.menu_item} onClick={handleLogout}>
                   Logout
                 </li>
@@ -110,7 +116,7 @@ function Header() {
                       ))}
                   <div className={styles.showbuttons}>
                     {showCart && (
-                      <Link to="/cart">
+                      <Link to="/cart" style={{color: '#000'}}>
                         <p className={styles.view_cart}>View Cart</p>
                       </Link>
                     )}

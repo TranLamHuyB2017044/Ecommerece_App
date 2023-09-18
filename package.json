@@ -10,6 +10,8 @@
     "@hookform/resolvers": "^3.1.1",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.6",
+    "@react-three/drei": "^9.83.9",
+    "@react-three/fiber": "^8.14.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -25,17 +27,18 @@
     "react-scripts": "5.0.1",
     "redux-persist": "^6.0.0",
     "sass": "^1.63.6",
+    "source-map-loader": "^4.0.1",
     "styled-components": "^6.0.0-rc.6",
     "sweetalert2": "^11.7.16",
+    "three": "^0.156.1",
     "web-vitals": "^2.1.4",
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start ",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-    
   },
   "eslintConfig": {
     "extends": [

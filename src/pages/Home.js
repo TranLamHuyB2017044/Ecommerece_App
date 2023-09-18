@@ -21,9 +21,9 @@ function Home() {
             <PopularProducts/>
             <h1 style={{
                 textAlign: 'center',
-                borderTop: '1px solid #ccc',
                 fontSize: '24',
                 padding: '20',
+                margin: '2rem'
             }}>Newsletter</h1>
             <Newsletter/>
             <Footer/>

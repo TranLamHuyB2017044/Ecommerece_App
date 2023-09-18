@@ -21,14 +21,13 @@ function SignIn() {
   const navigate = useNavigate()
   const schema = yup.object({
     UserName: yup.string().required('UserName is required'),
-    Password: yup.string().required('Password is require'),
-  }).required();
+    Password: yup.string().required('Password is required'),
+  })
   const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const onLogin = async (data) =>{
-    console.log(data)
+  const onLogin = async () =>{
     try {
       const user = await publicRequest.post('/auth/login', {username, password})
       dispatch(Login(user))
@@ -39,11 +38,26 @@ function SignIn() {
         navigate('/')
       }
     } catch (error) {
-      MyAlert.Alert('error', 'Username or password is incorrect')
+      MyAlert.Alert('error', error.response.data);
     }
     
   }
-  
+  const enterLogin = async (e) => {
+    if(e.key === 'enter'){
+      try {
+        const user = await publicRequest.post('/auth/login', {username, password})
+        dispatch(Login(user))
+        if(user){
+          MyAlert.Alert(
+            'success', 'Login successfully'
+          )
+          navigate('/')
+        }
+      } catch (error) {
+        MyAlert.Alert('error', error.response.data);
+      }
+    }
+  }
   return (
      <div className={styles.SignIn_container}>
       <Header />
@@ -57,7 +71,7 @@ function SignIn() {
           />
         </div>
         <div className={styles.auth_form} style={{alignItems: 'center'}}>
-          <form  onSubmit={handleSubmit(onLogin)}>
+          <form onSubmit={handleSubmit(onLogin)}>
             <div className={styles.change_form}>
                 <Link className={styles.text} to='/login' >Sign In |</Link>
                 <Link className={styles.text} to='/register' > Register</Link>
@@ -69,14 +83,10 @@ function SignIn() {
             </div>
             <div className={styles.input_group}>
                 <label htmlFor="Password" >Password</label>
-                <input id="Password" {...register("Password")} type="password" onChange={(e) => setPassword(e.target.value)}/>
+                <input id="Password" {...register("Password")} type="password" onChange={(e) => setPassword(e.target.value)} />
                 <p className={styles.error}>{errors.Password?.message}</p>
             </div>
-            <div className={styles.input_group_checkbox}>
-                <input type="checkbox" {...register("checkbox")} />
-                <p>Remember me</p>
-            </div>
-            <input className={styles.submit} type="submit" />
+            <input onKeyDown={enterLogin} className={styles.submit} type="submit" />
           </form>
         </div>
       </div>
