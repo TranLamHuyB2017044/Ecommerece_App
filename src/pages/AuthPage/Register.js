@@ -60,14 +60,7 @@ function Register() {
   };
   const enterSignup = async (e) => {
     if (e.key === "enter") {
-      try {
-        const rs = await publicRequest.post("/auth/register", newUser);
-        dispatch(SignUp(rs));
-        MyAlert.Alert("success", "Registered successfully");
-        navigate("/login");
-      } catch (error) {
-        MyAlert.Alert("error", error.response.data);
-      }
+      onSignup()
     }
   };
   return (
@@ -145,10 +138,7 @@ function Register() {
               />
               <p className={styles.error}>{errors.password?.message}</p>
             </div>
-            {/* <div className={styles.input_group_file}>
-                <label htmlFor="file">Choose your avatar</label>
-                <input type="file" id="file" {...register("file")} />
-            </div> */}
+
             <input onKeyDown={enterSignup} className={styles.submit} type="submit" />
 
           </form>

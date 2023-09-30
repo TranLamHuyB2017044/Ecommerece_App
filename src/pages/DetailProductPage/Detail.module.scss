@@ -31,6 +31,7 @@
         gap: 2rem;
         justify-content: flex-start;
         padding: 3rem;
+        width: 600px;
         @include responsive(phone){
             gap: 1rem;
             justify-content: center;
@@ -52,46 +53,72 @@
         .price{
             font-size: 2.5rem;
         }
-        .Colors{
+        .Info_product{
             display: flex;
+            flex-direction: column;
             gap: 2.6rem;
-            align-items: center;
-            p{
-                font-size: 2rem;
-                opacity: 0.7;
-
-            }
-            @include responsive(tablet){
-                margin-top: 1rem;
-            }
-            .color{
-                border-radius: 10%;
-                cursor: pointer;
-                padding: 15px;
-                border: none;
-                @include responsive(phone){
-                   padding: 3px 4px;
+            .Colors{
+                display: flex;
+                gap: 2rem;
+                min-height: 40px;
+                p{
+                    font-size: 2rem;
+                    opacity: 0.7;
+                    min-width: 70px;
+    
                 }
-                &:focus{
-                    border: 0.5px solid teal;
+                @include responsive(tablet){
+                    margin-top: 1rem;
+                }
+                .color_container{
+                    display: flex;
+                    gap: 1rem;
+                    flex-wrap: wrap;
+                    .color{
+                        font-weight: 600;
+                        border-radius: 10%;
+                        padding: 10px;
+                        width: 80px;
+                        border: none;
+                        @include responsive(phone){
+                           padding: 3px 4px;
+                        }
+                    }
                 }
             }
-        }
-        .Size{
-            display: flex;
-            gap: 1rem;
-            margin-left: 3rem;
-
-            p{
-                font-size: 2rem;
-                opacity: 0.7;
+            .Size{
+                display: flex;
+                gap: 2rem;
+                min-height: 40px;
+                p{
+                    font-size: 2rem;
+                    opacity: 0.7;
+                    min-width: 70px;
+                }
+                @include responsive(tablet){
+                    margin-top: 1rem;
+                }
+                .size_container{
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                    .size{
+                        font-weight: 600;
+                        border-radius: 10%;
+                        padding: 10px;
+                        width: 80px;
+                        border: none;
+                        @include responsive(phone){
+                           padding: 3px 4px;
+                        }
+                    }
+                }
             }
-            
         }
         .Quantity{
             display: flex;
             gap: 1.6rem;
-            margin-top: 1.6rem;
+            margin-top: 2rem;
             font-size: 2rem;
             .quantity{
                 opacity: 0.8;

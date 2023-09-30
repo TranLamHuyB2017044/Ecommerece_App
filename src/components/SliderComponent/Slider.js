@@ -6,7 +6,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Shoes from "../Shoes";
+
+
 function Slider() {
 	const [slideIndex, setSlideIndex] = useState(0);
 	const handleClick = (type) => {
@@ -33,7 +34,8 @@ function Slider() {
 					>
 						<div className={styles.slider_image}>
 						<Canvas>
-							<Shoes />
+							
+							{item.img}
 							<OrbitControls  autoRotate/>
 						</Canvas>
 							<img src={item.img} alt={item.img} />
@@ -42,8 +44,8 @@ function Slider() {
 							<h2 className={styles.title}>{item.title}</h2>
 							<p className={styles.desc}>{item.desc}</p>
 							<Link to="/products" className={styles.Link}>
-								<button class={styles.cta}>
-									<span class={styles.hover_underline_animation}> Shop now </span>
+								<button className={styles.cta}>
+									<span className={styles.hover_underline_animation}> Shop now </span>
 									<svg
 										viewBox="0 0 46 16"
 										height="10"

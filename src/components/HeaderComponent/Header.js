@@ -7,13 +7,14 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 import { Logout } from "../../redux/userRedux";
 import localStorage from "redux-persist/es/storage";
-import {  useState, useRef } from "react";
+import {  useState, useRef, useEffect } from "react";
 function Header() {
   const quantity = useSelector((state) => state.cart.quantity);
   const userInfo = useSelector((state) => state.user.currentUser);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [productsSearch, setProductsSearch] = useState('');
+  const [productsItem, setProductsItem] = useState([])
   const cartItems = useSelector((state) => state.cart.products);
   const name = userInfo?.data?.others.username;
   const avatarUser = userInfo?.data?.others.avatar
@@ -21,21 +22,28 @@ function Header() {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("persist:root");
+    localStorage.removeItem("access_token");
     navigate("/login");
     Logout();
     window.location.reload()
   };
   const handleChange = () => {
       navigate(`/search/?search=${productsSearch}`)
+      refInput.current.focus()
       refInput.current.value =''
+      
   }
   const handleEnterChange = (e) => {
     if(e.key === "Enter") {
-        navigate(`/search/?search=${productsSearch}`)
-        refInput.current.value =''
+        handleChange()
     }
     
   }
+
+  useEffect(()=>{
+    setProductsItem(cartItems)
+  }, [cartItems])
+
   return (
     <div className={styles.header_container}>
       <div className={styles.header_left}>
@@ -89,12 +97,11 @@ function Header() {
               <div>
                 <ShoppingCartOutlinedIcon />
               </div>
-              {cartItems.length > 0 ? (
+              {productsItem.length > 0 ? (
                 <div className={styles.showCart}>
                   {showCart &&
-                    cartItems
+                    productsItem
                       .slice(-5)
-                      .reverse()
                       .map((item, index) => (
                         <ul key={index} className={styles.cart_menu}>
                           <li className={styles.cart_item}>
@@ -113,7 +120,7 @@ function Header() {
                             <p className={styles.item_price}>{item.price}$</p>
                           </li>
                         </ul>
-                      ))}
+                      )).reverse()}
                   <div className={styles.showbuttons}>
                     {showCart && (
                       <Link to="/cart" style={{color: '#000'}}>

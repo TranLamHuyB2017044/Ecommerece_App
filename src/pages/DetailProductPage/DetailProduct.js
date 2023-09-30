@@ -12,8 +12,8 @@ import MyAlert from "../../components/AlertComponent/Alert";
 function DetailProduct() {
   const [product, setproduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState("Gray");
-  const [size, setSize] = useState("S");
+  const [color, setColor] = useState('');
+  const [size, setSize] = useState('');
   const dispatch = useDispatch();
   const localtion = useLocation();
   const id = localtion.pathname.split("/")[2];
@@ -36,9 +36,17 @@ function DetailProduct() {
     }
   };
   const handleAddCart = async () => {
-    dispatch(addProduct({ ...product, quantity, size, color }));
-    // await usercRequest.put(`/user/${userId}`, { cart: id });
-    MyAlert.Toast("success", "Product added successfully");
+    if(color === ''){
+      MyAlert.Toast('error', 'please select a color first !')
+      return false
+    }else if(size === ''){
+      MyAlert.Toast('error', 'please select a size first !')
+      return false
+    }else{
+      dispatch(addProduct({ ...product, quantity, size, color }));
+      // await usercRequest.put(`/user/${userId}`, { cart: id });
+      MyAlert.Toast("success", "Product added successfully");
+    }
   };
   return (
     <div className="Detail_Container">
@@ -53,28 +61,37 @@ function DetailProduct() {
           <h2 className={styles.product_name}>{product.title}</h2>
           <p className={styles.description}>{product.desc}</p>
           <p className={styles.price}>{product.price} $</p>
-          <div className={styles.Colors}>
-            <p>Color: </p>
-            {product.color?.map((color_item) => (
-              <button
-                key={color_item}
-                className={styles.color}
-                style={color === color_item ? {border: '0.5px solid teal'} : {border: 'none'}}
-                onClick={() => {setColor(color_item)}}
-              >
-                {color_item}
-              </button>
-            ))}
-
-            <div className={styles.Size}>
-              <p>Size</p>
-              <select onChange={(e) => setSize(e.target.value)}>
-                {product.size?.map((size, index) => (
-                  <option value={size} key={index}>
-                    {size}
-                  </option>
+          <div className={styles.Info_product}>
+            <div className={styles.Colors}>
+              <p>Color </p>
+              <div className={styles.color_container}>
+                {product.color?.map((color_item) => (
+                  <button
+                    key={color_item}
+                    className={styles.color}
+                    style={color === color_item ? {border: '0.5px solid teal'} : {border: 'none'}}
+                    onClick={() => {setColor(color_item)}}
+                  >
+                    {color_item}
+                  </button>
                 ))}
-              </select>
+              </div>
+            </div>
+            <div className={styles.Size}>
+              <p>Size </p>
+              <div className={styles.size_container}>
+                {product.size?.map((size_item) => (
+                  <button
+                    key={size_item}
+                    className={styles.size}
+                    style={size === size_item ? {border: '0.5px solid teal'} : {border: 'none'}}
+                    onClick={() => {setSize(size_item)}}
+                  >
+                    {size_item}
+                  </button>
+                ))}
+              </div>
+              
             </div>
           </div>
           <div className={styles.Quantity}>

@@ -1,21 +1,26 @@
+import Shoes from './components/Shoes'
+import Box from './components/Box'
+
+const shoesIMG = <Shoes/>
+const BoxIMG = <Box/>
 export const sliderItems = [
     {
       id: 1,
-      img: "https://m.media-amazon.com/images/I/71vfcYvQr2L._AC_SX466._SX._UX._SY._UY_.jpg",
+      img: shoesIMG,
       title: "SUMMER SALE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "#f5fafd",
     },
     {
       id: 2,
-      img: "https://i.ibb.co/DG69bQ4/2.png",
+      img: BoxIMG,
       title: "AUTUMN COLLECTION",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "#fcf1ed",
     },
     {
       id: 3,
-      img: "https://i.ibb.co/cXFnLLV/3.png",
+      img: BoxIMG,
       title: "LOUNGEWEAR LOVE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "#fbf0f4",
