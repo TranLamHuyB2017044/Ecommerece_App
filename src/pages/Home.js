@@ -4,16 +4,14 @@ import Newsletter from "../components/NewsletterComponent/Newsletter";
 import PopularProducts from "../components/PopularProductsComponent/PopularProducts";
 import Slider from "../components/SliderComponent/Slider";
 import Header from "../components/HeaderComponent/Header";
-import Announcement from "../components/AnnouncementComponent/Announcement";
-import NavBar from "../components/NavBarComponent/NavBar";
+// import Announcement from "../components/AnnouncementComponent/Announcement";
+// import NavBar from "../components/NavBarComponent/NavBar";
 import GoToTop from "../components/GoToTopComponent/GoToTop";
 function Home() {
 
     return ( 
         <div className="home_content">
-            <Announcement/>
             <Header />
-            <NavBar/>
             <Slider/>
             <h1 style={{textAlign: 'center', marginTop: '10px'}}>Get Inspire</h1>
             <Categories/>

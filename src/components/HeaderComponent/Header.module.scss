@@ -2,10 +2,17 @@
 
 .header_container{
     display: flex;
-    height: 60px;
+    height: 80px;
     justify-content: space-between;
     padding: 1rem;
     align-items: center;
+    position: fixed;
+    z-index: 100;
+    background-color: #fff;
+    top: 0;
+    right: 0;
+    left: 0;
+    
     .header_left{
         flex: 1;
         display: flex;
@@ -33,18 +40,29 @@
             svg{
                 font-size: 2.5rem;
                 cursor: pointer;
+                opacity: 0.6;
             }
+
         }
     }
     .header_center{
         flex: 1;
-        text-align: center;
-        font-size: 3rem;
-        font-weight: bold;
-        margin-left: 3rem;
+        padding-top: 1.5rem;
         @include responsive(phone){
-            margin-right: 2rem;
+            margin-top: 1.4rem;
         }
+        p{
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-left: 3rem;
+            @include responsive(phone){
+                text-align: start;
+                margin-left: 0.1rem;
+
+            }
+        }
+        
     }
     .header_right{
         flex: 1;
@@ -55,6 +73,7 @@
         cursor: pointer;
         @include responsive(phone){
             gap: 1rem;
+            justify-content: space-evenly;
         }
         .dropdown{
             position: relative;

@@ -1,6 +1,4 @@
-import Announcement from "../../components/AnnouncementComponent/Announcement";
 import Header from "../../components/HeaderComponent/Header";
-import NavBar from "../../components/NavBarComponent/NavBar";
 import Footer from "../../components/FooterComponent/Footer";
 import styles from "./Detail.module.scss";
 import { useEffect, useState } from "react";
@@ -49,10 +47,8 @@ function DetailProduct() {
     }
   };
   return (
-    <div className="Detail_Container">
+    <div className={styles.detail_container}>
       <Header />
-      <NavBar />
-      <Announcement />
       <div className={styles.wrapper}>
         <div className={styles.image_container}>
           <img src={product.img} alt="img-detail" />

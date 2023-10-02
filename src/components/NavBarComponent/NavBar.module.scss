@@ -1,5 +1,8 @@
+@import '../GlobalStyles/GlobalStyles.scss';
+
 .Navbar_container{
     height: 50px;
+    
     .Navbar_items{
         display: flex;
         justify-content: center;

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { AmbientLight } from "three";
 
 
 function Slider() {
@@ -34,7 +35,7 @@ function Slider() {
 					>
 						<div className={styles.slider_image}>
 						<Canvas>
-							
+							<ambientLight/>
 							{item.img}
 							<OrbitControls  autoRotate/>
 						</Canvas>

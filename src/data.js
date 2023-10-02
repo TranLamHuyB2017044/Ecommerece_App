@@ -1,26 +1,28 @@
 import Shoes from './components/Shoes'
-import Box from './components/Box'
+import NikeShoes from './components/Nike'
+import Vans from './components/Vans'
 
-const shoesIMG = <Shoes/>
-const BoxIMG = <Box/>
+const AdidasIMG = <Shoes/>
+const NikeIMG = <NikeShoes/>
+const VansIMG = <Vans/>
 export const sliderItems = [
     {
       id: 1,
-      img: shoesIMG,
+      img: AdidasIMG,
       title: "SUMMER SALE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "#f5fafd",
     },
     {
       id: 2,
-      img: BoxIMG,
+      img: NikeIMG,
       title: "AUTUMN COLLECTION",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "#fcf1ed",
     },
     {
       id: 3,
-      img: BoxIMG,
+      img: VansIMG,
       title: "LOUNGEWEAR LOVE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "#fbf0f4",
@@ -30,21 +32,21 @@ export const sliderItems = [
   export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "SHIRT STYLE!",
-      cat: "woman"
+      img: "https://images.vans.com/is/image/VansBrand/FA23_KnuSkool_ImageResize_1?$fullres$",
+      title: "THE KNU SKOOL!",
+      cat: "Vans"
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "LOUNGEWEAR LOVE",
-      cat: "coat"
+      img: "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_400,w_400/fw23_terrex_adventure_wardrobe_hike_launch_hp_tc_d_e580d1ba20.jpg",
+      title: "THE ADVENTURE WARDROBE",
+      cat: "Adidas"
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "LIGHT JACKETS",
-      cat: "jeans"
+      img: "https://static.nike.com/a/images/f_auto/dpr_1.3,cs_srgb/w_467,c_limit/4d3c2009-b656-400d-8169-c0c59dcd43f2/nike-just-do-it.jpg",
+      title: "AIR FORCE 1",
+      cat: "Nike"
     },
   ];
 
@@ -87,7 +89,7 @@ export const sliderItems = [
 
   ]
 
-  export const NewsletterIMG = 'https://images.unsplash.com/photo-1624281043172-16ff234c2a14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3VtbWVyJTIwb3V0Zml0fGVufDB8MHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60'
+  export const NewsletterIMG = 'https://images.vans.com/is/image/VansBrand/FA23_BrandClassics_SportLow_White_HPBanner_1420x568?$fullres$'
   export const imgLogin = 'https://iliabeauty.com/hero-account.jpg'
   export const imgShoes = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/3b8a8a4b-7dcb-4495-a3aa-83386f143cc8/air-jordan-1-mid-se-mens-shoes-Zn07hL.png'
   export const imgHoodie = 'https://assets.adidas.com/images/w_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/58387042b42b4a0d89d5299ff5c3de8d_9366/Ao_Hoodie_Khoa_Keo_3_Soc_Future_Icons_Ngoc_lam_IJ8878_01_laydown.jpg'

@@ -1,7 +1,5 @@
 import styles from "./EditProfile.module.scss";
 import Header from "../../components/HeaderComponent/Header";
-import Announcement from "../../components/AnnouncementComponent/Announcement";
-import NavBar from "../../components/NavBarComponent/NavBar";
 import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -44,8 +42,6 @@ export default function Profile() {
     return (
         <div className={styles.profile_container}>
             <Header />
-            <NavBar />
-            <Announcement />
             <div className={styles.profile_content}>
                 <div className={styles.title}>
                     <h2>Edit Profile</h2>

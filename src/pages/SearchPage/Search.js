@@ -1,7 +1,5 @@
 import styles from "./Search.module.scss";
 import Header from "../../components/HeaderComponent/Header";
-import NavBar from "../../components/NavBarComponent/NavBar";
-import Announcement from "../../components/AnnouncementComponent/Announcement";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -59,67 +57,76 @@ function Search() {
   return (
     <div className={styles.search_container}>
       <Header />
-      <NavBar />
-      <Announcement />
-      <div className={styles.Filters_container}>
-        <div className={styles.filter_left}>
-          <p>Filter Product: </p>
-          <select name="color" onChange={handleFilter}>
-            <option defaultChecked>Color</option>
-            <option>Red</option>
-            <option>Blue</option>
-            <option>Green</option>
-            <option>Black</option>
-            <option>Pink</option>
-            <option>Gray</option>
-            <option>Yellow</option>
-          </select>
-          <select name="size" onChange={handleFilter}>
-            <option defaultChecked>Size</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-            <option>XXL</option>
-          </select>
-        </div>
-        <div className={styles.filter_right}>
-          <p>Sort Product: </p>
-          <select onChange={(e) => setSort(e.target.value)}>
-            <option value="newest">Newest</option>
-            <option value="asc">Price (Asc)</option>
-            <option value="desc">Price (Desc)</option>
-          </select>
-        </div>
-      </div>
-      {product.length > 0 ? <h2 className={styles.head_title}>Search for '{query.split("=")[1]}'</h2> : <h2 className={styles.head_title}>Not match for  '{query.split("=")[1]}'</h2>}
-      <div className={styles.Products_container}>
-        {filtersProduct.map((product) => (
-          <div key={product._id} className={styles.product_content}>
-            <div className={styles.product_image}>
-              <img src={product.img} alt={product.img} />
-            </div>
-            <div className={styles.product_info}>
-              <div className={styles.icon}>
-                <ShoppingCartOutlinedIcon />
+      <div className={styles.search_content}>
+        {product.length > 0 ? (
+          <>
+            <div className={styles.Filters_container}>
+              <div className={styles.filter_left}>
+                <p>Filter Product: </p>
+                <select name="color" onChange={handleFilter}>
+                  <option defaultChecked>Color</option>
+                  <option>Red</option>
+                  <option>Blue</option>
+                  <option>Green</option>
+                  <option>Black</option>
+                  <option>Pink</option>
+                  <option>Gray</option>
+                  <option>Yellow</option>
+                </select>
+                <select name="size" onChange={handleFilter}>
+                  <option defaultChecked>Size</option>
+                  <option>S</option>
+                  <option>M</option>
+                  <option>L</option>
+                  <option>XL</option>
+                  <option>XXL</option>
+                </select>
               </div>
-              {user ? (
-              <Link to={`/detail/${product._id}`} className={styles.icon}>
-                <SearchOutlinedIcon style={{ color: "#000" }} />
-              </Link>
-            ) : (
-              <Link to={`/login`} className={styles.icon}>
-                <SearchOutlinedIcon style={{ color: "#000" }} />
-              </Link>
-            )}
-              <div className={styles.icon}>
-                <FavoriteBorderOutlinedIcon />
+              <div className={styles.filter_right}>
+                <p>Sort Product: </p>
+                <select onChange={(e) => setSort(e.target.value)}>
+                  <option value="newest">Newest</option>
+                  <option value="asc">Price (Asc)</option>
+                  <option value="desc">Price (Desc)</option>
+                </select>
               </div>
             </div>
-          </div>
-        ))}
+            <h2 className={styles.head_title}>
+              Search for '{query.split("=")[1]}'
+            </h2>
+          </>
+        ) : (
+          <h2 className={styles.head_title} style={{position: 'absolute', top: '20rem'}}>
+            Not match for '{query.split("=")[1]}'
+          </h2>
+        )}
+        <div className={styles.Products_container}>
+          {filtersProduct.map((product) => (
+            <div key={product._id} className={styles.product_content}>
+              <div className={styles.product_image}>
+                <img src={product.img} alt={product.img} />
+              </div>
+              <div className={styles.product_info}>
+                <div className={styles.icon}>
+                  <ShoppingCartOutlinedIcon />
+                </div>
+                {user ? (
+                  <Link to={`/detail/${product._id}`} className={styles.icon}>
+                    <SearchOutlinedIcon style={{ color: "#000" }} />
+                  </Link>
+                ) : (
+                  <Link to={`/login`} className={styles.icon}>
+                    <SearchOutlinedIcon style={{ color: "#000" }} />
+                  </Link>
+                )}
+                <div className={styles.icon}>
+                  <FavoriteBorderOutlinedIcon />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-
       <Footer />
       <GoToTop />
     </div>

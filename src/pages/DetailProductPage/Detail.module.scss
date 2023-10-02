@@ -1,162 +1,165 @@
 @import '../../components/GlobalStyles/GlobalStyles.scss';
-.wrapper{
-    display: flex;
-    margin-top: 4rem;
-    @include responsive(phone){
-        flex-direction: column;
-    }
-    @include responsive(tablet){
-        flex-direction: column;
-    }
-    .image_container{
-        flex: 1;
+.detail_container{
+    margin-top: 150px;
+
+    .wrapper{
         display: flex;
-        justify-content: center;
-        height: 80vh;
-        padding-bottom: 1rem;
         @include responsive(phone){
-            height: 40vh;
-        }
-        img{
-            object-fit: cover;
-            @include responsive(tablet){
-                height: 60vh;
-            }
-        }
-    }
-    .info{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        justify-content: flex-start;
-        padding: 3rem;
-        width: 600px;
-        @include responsive(phone){
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2rem;
+            flex-direction: column;
         }
         @include responsive(tablet){
-            gap: 1rem;
-            
+            flex-direction: column;
         }
-        .product_name{
-            font-size: 2.5rem;
-            font-weight: normal;
-            text-transform: uppercase;
+        .image_container{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            height: 80vh;
+            padding-bottom: 1rem;
+            @include responsive(phone){
+                height: 40vh;
+            }
+            img{
+                object-fit: cover;
+                @include responsive(tablet){
+                    height: 60vh;
+                }
+            }
         }
-        .description{
-            font-size: 14px;
-            font-weight: 300;
-        }
-        .price{
-            font-size: 2.5rem;
-        }
-        .Info_product{
+        .info{
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 2.6rem;
-            .Colors{
+            gap: 2rem;
+            justify-content: flex-start;
+            padding: 3rem;
+            width: 600px;
+            @include responsive(phone){
+                gap: 1rem;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+            @include responsive(tablet){
+                gap: 1rem;
+                
+            }
+            .product_name{
+                font-size: 2.5rem;
+                font-weight: normal;
+                text-transform: uppercase;
+            }
+            .description{
+                font-size: 14px;
+                font-weight: 300;
+            }
+            .price{
+                font-size: 2.5rem;
+            }
+            .Info_product{
                 display: flex;
-                gap: 2rem;
-                min-height: 40px;
-                p{
-                    font-size: 2rem;
-                    opacity: 0.7;
-                    min-width: 70px;
-    
-                }
-                @include responsive(tablet){
-                    margin-top: 1rem;
-                }
-                .color_container{
+                flex-direction: column;
+                gap: 2.6rem;
+                .Colors{
                     display: flex;
-                    gap: 1rem;
-                    flex-wrap: wrap;
-                    .color{
-                        font-weight: 600;
-                        border-radius: 10%;
-                        padding: 10px;
-                        width: 80px;
-                        border: none;
-                        @include responsive(phone){
-                           padding: 3px 4px;
+                    gap: 2rem;
+                    min-height: 40px;
+                    p{
+                        font-size: 2rem;
+                        opacity: 0.7;
+                        min-width: 70px;
+        
+                    }
+                    @include responsive(tablet){
+                        margin-top: 1rem;
+                    }
+                    .color_container{
+                        display: flex;
+                        gap: 1rem;
+                        flex-wrap: wrap;
+                        .color{
+                            font-weight: 600;
+                            border-radius: 10%;
+                            padding: 10px;
+                            width: 80px;
+                            border: none;
+                            @include responsive(phone){
+                               padding: 3px 4px;
+                            }
+                        }
+                    }
+                }
+                .Size{
+                    display: flex;
+                    gap: 2rem;
+                    min-height: 40px;
+                    p{
+                        font-size: 2rem;
+                        opacity: 0.7;
+                        min-width: 70px;
+                    }
+                    @include responsive(tablet){
+                        margin-top: 1rem;
+                    }
+                    .size_container{
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 1rem;
+                        .size{
+                            font-weight: 600;
+                            border-radius: 10%;
+                            padding: 10px;
+                            width: 80px;
+                            border: none;
+                            @include responsive(phone){
+                               padding: 3px 4px;
+                            }
                         }
                     }
                 }
             }
-            .Size{
+            .Quantity{
                 display: flex;
-                gap: 2rem;
-                min-height: 40px;
-                p{
-                    font-size: 2rem;
-                    opacity: 0.7;
-                    min-width: 70px;
+                gap: 1.6rem;
+                margin-top: 2rem;
+                font-size: 2rem;
+                .quantity{
+                    opacity: 0.8;
+                    margin-top: 2px;
                 }
-                @include responsive(tablet){
-                    margin-top: 1rem;
+                .minus{
+                    cursor: pointer;
+                    width: 1.6rem;
+                    font-size: 3rem;
+                    margin-top: -5px;
                 }
-                .size_container{
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 1rem;
-                    .size{
-                        font-weight: 600;
-                        border-radius: 10%;
-                        padding: 10px;
-                        width: 80px;
-                        border: none;
-                        @include responsive(phone){
-                           padding: 3px 4px;
-                        }
-                    }
+                .number{
+                    border: 1px solid teal;
+                    padding: 5px 14px;
+                    border-radius: 10px;
+                    margin-top: -5px;
+                }
+                .plus{
+                    width: 1.6rem;
+                    margin-top: -5px;
+                    font-size: 3rem;
+                    cursor: pointer;
                 }
             }
-        }
-        .Quantity{
-            display: flex;
-            gap: 1.6rem;
-            margin-top: 2rem;
-            font-size: 2rem;
-            .quantity{
-                opacity: 0.8;
-                margin-top: 2px;
+            .inStock{
+                font-size: 1.4rem;
+                opacity: 0.7;
+                margin-top: 2rem;
             }
-            .minus{
-                cursor: pointer;
-                width: 1.6rem;
-                font-size: 3rem;
-                margin-top: -5px;
-            }
-            .number{
-                border: 1px solid teal;
-                padding: 5px 14px;
-                border-radius: 10px;
-                margin-top: -5px;
-            }
-            .plus{
-                width: 1.6rem;
-                margin-top: -5px;
-                font-size: 3rem;
-                cursor: pointer;
-            }
-        }
-        .inStock{
-            font-size: 1.4rem;
-            opacity: 0.7;
-            margin-top: 2rem;
-        }
-        .AddCart_Button{
-            margin-top: 2rem;
-            padding: 1rem;
-            button{
-                cursor: pointer;
+            .AddCart_Button{
+                margin-top: 2rem;
                 padding: 1rem;
-                &:hover{
-                    box-shadow: 1px 3px 8px #000;
-                    border: 2px solid teal;
+                button{
+                    cursor: pointer;
+                    padding: 1rem;
+                    &:hover{
+                        box-shadow: 1px 3px 8px #000;
+                        border: 2px solid teal;
+                    }
                 }
             }
         }

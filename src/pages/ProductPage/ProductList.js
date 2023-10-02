@@ -1,7 +1,5 @@
-import Announcement from "../../components/AnnouncementComponent/Announcement";
 import Footer from "../../components/FooterComponent/Footer";
 import Header from "../../components/HeaderComponent/Header";
-import NavBar from "../../components/NavBarComponent/NavBar";
 import Products from "../../components/ProductsComponent/Products";
 import Newsletter from "../../components/NewsletterComponent/Newsletter";
 import styles from './ProductList.module.scss'
@@ -21,10 +19,8 @@ function ProductList() {
         })
     }
     return ( 
-        <div className="ProductList_Container">
+        <div className={styles.ProductList_container}>
             <Header/>
-            <NavBar/>
-            <Announcement/>
             <div className={styles.Filters_container}>
                 <div className={styles.filter_left}>
                     <p>Filter Product: </p>

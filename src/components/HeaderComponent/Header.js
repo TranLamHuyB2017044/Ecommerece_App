@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { Logout } from "../../redux/userRedux";
 import localStorage from "redux-persist/es/storage";
 import {  useState, useRef, useEffect } from "react";
+import NavBar from "../NavBarComponent/NavBar";
 function Header() {
   const quantity = useSelector((state) => state.cart.quantity);
   const userInfo = useSelector((state) => state.user.currentUser);
@@ -28,9 +29,11 @@ function Header() {
     window.location.reload()
   };
   const handleChange = () => {
-      navigate(`/search/?search=${productsSearch}`)
-      refInput.current.focus()
-      refInput.current.value =''
+      if(refInput.current.value !== ''){
+        navigate(`/search/?search=${productsSearch}`)
+        refInput.current.focus()
+        refInput.current.value =''
+      }
       
   }
   const handleEnterChange = (e) => {
@@ -58,7 +61,12 @@ function Header() {
           <SearchIcon  onClick ={handleChange}/>
         </div>
       </div>
-      <div className={styles.header_center}>CAMILE.</div>
+      <div className={styles.header_center}>
+        <p>CAMILE.</p>
+        <div className={styles.nav}>
+          <NavBar/>
+        </div>
+      </div>
       <div className={styles.header_right}>
         {userInfo ? (
           <div
@@ -144,6 +152,7 @@ function Header() {
         </IconButton>
       </div>
     </div>
+    
   );
 }
 

@@ -1,7 +1,5 @@
 import styles from "./Cart.module.scss";
-import Announcement from "../../components/AnnouncementComponent/Announcement";
 import Header from "../../components/HeaderComponent/Header";
-import NavBar from "../../components/NavBarComponent/NavBar";
 import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
 import { removeProduct } from "../../redux/cartRedux";
@@ -44,8 +42,6 @@ function Cart() {
   return (
     <div className={styles.cart_container}>
       <Header />
-      <NavBar />
-      <Announcement />
       <div className={styles.wrapper}>
         <h1 className={styles.title}>YOUR CART</h1>
         <div className={styles.top}>

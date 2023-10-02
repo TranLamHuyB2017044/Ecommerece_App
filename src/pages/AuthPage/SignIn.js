@@ -1,8 +1,6 @@
 import styles from "./auth.module.scss";
 import Header from "../../components/HeaderComponent/Header";
-import NavBar from "../../components/NavBarComponent/NavBar";
 import Footer from "../../components/FooterComponent/Footer";
-import Announcement from "../../components/AnnouncementComponent/Announcement";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -44,8 +42,6 @@ function SignIn() {
   return (
      <div className={styles.SignIn_container}>
       <Header />
-      <NavBar />
-      <Announcement />
       <div className={styles.wrapper}>
         <div className={styles.img}>
           <img

@@ -6,9 +6,8 @@ function NavBar() {
             <ul className={styles.Navbar_items}>
                 <Link to='/' className={styles.item}>Home</Link>
                 <Link to= '/products' className={styles.item}>Shop</Link>
-                <li  className={styles.item}>Shoes</li>
-                <li className={styles.item}>Accessories</li>
-                <li className={styles.item}>New Arrive</li>
+                <Link to= '/products/?category=Men' className={styles.item}>Men</Link>
+                <Link to= '/products/?category=Women' className={styles.item}>Women</Link>
             </ul>
         </div>
     );
