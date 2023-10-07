@@ -42,7 +42,6 @@ function Header() {
     }
     
   }
-
   useEffect(()=>{
     setProductsItem(cartItems)
   }, [cartItems])

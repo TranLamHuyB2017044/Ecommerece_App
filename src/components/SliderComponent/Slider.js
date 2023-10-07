@@ -2,11 +2,10 @@ import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutl
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import { sliderItems } from "../../data";
 import styles from "./Slider.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { AmbientLight } from "three";
 
 
 function Slider() {
@@ -18,6 +17,14 @@ function Slider() {
 			setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
 		}
 	};
+	useEffect(()=>{
+		const interId = setInterval(() => {
+			setSlideIndex(prev => prev < 2 ? prev + 1 : 0);
+			console.log('rendering')
+		}, 10000)
+
+		return () => clearInterval(interId) 	
+	}, [])
 	return (
 		<div className={styles.slider_container}>
 			<div className={styles.arrow_left} onClick={() => handleClick("left")}>

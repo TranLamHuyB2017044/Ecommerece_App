@@ -2,7 +2,11 @@ import styles from "./Cart.module.scss";
 import Header from "../../components/HeaderComponent/Header";
 import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
-import { removeProduct } from "../../redux/cartRedux";
+import {
+  decrementProduct,
+  incrementQuantity,
+  removeProduct,
+} from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import myAlert from "../../components/AlertComponent/Alert";
@@ -11,30 +15,37 @@ import { useEffect, useState } from "react";
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const cartElements = cart.products;
-  const Total = cart.products.reduce((a, v) => (a = a + v.price * v.quantity),  0);
   const dispatch = useDispatch();
   const [cartItem, setCartItem] = useState([]);
+  const Total = cartItem.reduce((total, product) => {
+    console.log('rerender')
+    return total += product.quantity * product.price;
+  }, 0)
 
+  // clone new product array
   useEffect(() => {
     setCartItem(cartElements);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartElements]);
 
-  const numberProduct = () =>{
-    const numberList = cartElements.map((item) => {
-      return item.quantity
-      
-    });
-    return numberList
-  }
 
-  const [quantity, setQuantity] = useState(() => {
-    return numberProduct()
-  } );
-  console.log(quantity)
-  const handleClick = (type, id) => {
-    
-  }
+  // Update product quantity
+
+  const handleClick = (index, type) => {
+    cartItem.map((item, i) => {
+      if (type === "incr") {
+        if (i === index) {
+          dispatch(incrementQuantity(i));
+        }
+      } else {
+        if (i === index) {
+          dispatch(decrementProduct(i));
+        }
+      }
+      return item;
+    });
+  };
+
   const handleCheckout = (e) => {
     e.preventDefault();
     myAlert.Alert("success", "Checkout completed !!");
@@ -86,14 +97,14 @@ function Cart() {
                     <div className={styles.Quantity}>
                       <p
                         className={styles.minus}
-                        onClick={() => handleClick("decr")}
+                        onClick={() => handleClick(index, "decr")}
                       >
                         -
                       </p>
-                      <p className={styles.number}>{quantity}</p>
+                      <p className={styles.number}>{product.quantity}</p>
                       <p
                         className={styles.plus}
-                        onClick={() => handleClick("incr")}
+                        onClick={() => handleClick(index, "incr")}
                       >
                         +
                       </p>
