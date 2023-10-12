@@ -58,6 +58,7 @@ function ProductList() {
                 borderTop: '1px solid #ccc',
                 fontSize: '24',
                 padding: '20',
+                marginBottom:'2rem'
             }}>Newsletter</h1>
             <Newsletter/>
             <Footer/>

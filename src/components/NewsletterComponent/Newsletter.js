@@ -1,6 +1,7 @@
 import styles from "./Newsletter.module.scss";
 import { Link } from "react-router-dom";
 import {NewsletterIMG} from '../../data'
+
 function Newsletter() {
   return (
     <div className={styles.Newsletter_container}>
@@ -9,7 +10,7 @@ function Newsletter() {
           <Link to="/products">Shop all</Link>
         </div>
         
-        <img src={NewsletterIMG} alt="NewsletterIMG" />
+        <img loading="lazy" src={NewsletterIMG} alt="NewsletterIMG" />
           
     </div>
   );

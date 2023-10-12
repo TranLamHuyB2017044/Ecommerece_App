@@ -12,13 +12,18 @@
     top: 0;
     right: 0;
     left: 0;
-    
+    @include responsive(phone){
+        height: 100px;
+    }
     .header_left{
         flex: 1;
         display: flex;
         justify-content: flex-start;
         gap: 2rem;
         margin-left: 3rem;
+        @include responsive(tablet){
+            order: 2;
+        }
         @include responsive(phone){
             display: none;
         }
@@ -49,18 +54,22 @@
         flex: 1;
         padding-top: 1.5rem;
         @include responsive(phone){
-            margin-top: 1.4rem;
+            display: flex;
+            flex-direction: row-reverse;
+
+        }
+        @include responsive(tablet){
+            display: flex;
+            flex-direction: row-reverse;
+            padding-top: 0;
+
         }
         p{
             text-align: center;
             font-size: 3rem;
             font-weight: bold;
             margin-left: 3rem;
-            @include responsive(phone){
-                text-align: start;
-                margin-left: 0.1rem;
 
-            }
         }
         
     }
@@ -71,9 +80,12 @@
         gap: 2rem;
         margin-right: 3rem;
         cursor: pointer;
+        @include responsive(tablet){
+            order: 3;
+        }
         @include responsive(phone){
             gap: 1rem;
-            justify-content: space-evenly;
+            margin-left: 5rem;
         }
         .dropdown{
             position: relative;

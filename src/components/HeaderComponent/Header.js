@@ -116,8 +116,8 @@ function Header() {
                               width="50px"
                               height="50px"
                               className={styles.item_img}
-                              src={item.img}
-                              alt={item.img}
+                              src={item.img[3].url_img}
+                              alt={item.img[3].url_img}
                             />
                           </li>
                           <li className={styles.cart_item}>

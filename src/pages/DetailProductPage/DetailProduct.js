@@ -7,11 +7,13 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartRedux";
 import MyAlert from "../../components/AlertComponent/Alert";
+
 function DetailProduct() {
   const [product, setproduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [color, setColor] = useState('');
-  const [size, setSize] = useState('');
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const [img, setImg] = useState("");
   const dispatch = useDispatch();
   const localtion = useLocation();
   const id = localtion.pathname.split("/")[2];
@@ -24,6 +26,16 @@ function DetailProduct() {
     };
     productList();
   }, [id]);
+
+  // const [activeImage, setActiveImage] = useState(product.img)
+  useEffect(() => {
+    product.img?.map((item, index) => {
+      if (index === 3) {
+        setImg(item.url_img);
+      }
+      return item.url_img;
+    });
+  }, [product]);
   const handleClick = (type) => {
     if (type === "incr") {
       setQuantity((prev) => prev + 1);
@@ -34,24 +46,39 @@ function DetailProduct() {
     }
   };
   const handleAddCart = async () => {
-    if(color === ''){
-      MyAlert.Toast('error', 'please select a color first !')
-      return false
-    }else if(size === ''){
-      MyAlert.Toast('error', 'please select a size first !')
-      return false
-    }else{
+    if (color === "") {
+      MyAlert.Toast("error", "please select a color first !");
+      return false;
+    } else if (size === "") {
+      MyAlert.Toast("error", "please select a size first !");
+      return false;
+    } else {
       dispatch(addProduct({ ...product, quantity, size, color }));
       // await usercRequest.put(`/user/${userId}`, { cart: id });
       MyAlert.Toast("success", "Product added successfully");
     }
   };
+
+  const handleChangeImg = (index) => {
+    product.img?.map((img_item, i) => {
+      if(i === index) {
+        setImg(img_item.url_img)
+      }
+      return img_item.url_img
+    })
+  }
+
   return (
     <div className={styles.detail_container}>
       <Header />
       <div className={styles.wrapper}>
         <div className={styles.image_container}>
-          <img src={product.img} alt="img-detail" />
+          <img src={img} alt="img-detail" />
+          <div className={styles.more_image}>
+            {product.img?.map((img_item, index) => (
+                <img key={index} onClick={() => handleChangeImg(index)} src={img_item.url_img} alt="img-detail" />
+            ))}
+          </div>
         </div>
         <div className={styles.info}>
           <h2 className={styles.product_name}>{product.title}</h2>
@@ -65,8 +92,14 @@ function DetailProduct() {
                   <button
                     key={color_item}
                     className={styles.color}
-                    style={color === color_item ? {border: '0.5px solid teal'} : {border: 'none'}}
-                    onClick={() => {setColor(color_item)}}
+                    style={
+                      color === color_item
+                        ? { border: "0.5px solid teal" }
+                        : { border: "none" }
+                    }
+                    onClick={() => {
+                      setColor(color_item);
+                    }}
                   >
                     {color_item}
                   </button>
@@ -80,14 +113,19 @@ function DetailProduct() {
                   <button
                     key={size_item}
                     className={styles.size}
-                    style={size === size_item ? {border: '0.5px solid teal'} : {border: 'none'}}
-                    onClick={() => {setSize(size_item)}}
+                    style={
+                      size === size_item
+                        ? { border: "0.5px solid teal" }
+                        : { border: "none" }
+                    }
+                    onClick={() => {
+                      setSize(size_item);
+                    }}
                   >
                     {size_item}
                   </button>
                 ))}
               </div>
-              
             </div>
           </div>
           <div className={styles.Quantity}>
@@ -100,7 +138,7 @@ function DetailProduct() {
               +
             </p>
           </div>
-            <p className={styles.inStock}>{product.inStock} pieces available</p>
+          <p className={styles.inStock}>{product.inStock} pieces available</p>
           <div className={styles.AddCart_Button}>
             <button onClick={handleAddCart}>ADD TO CART</button>
           </div>

@@ -18,16 +18,14 @@ function Cart() {
   const dispatch = useDispatch();
   const [cartItem, setCartItem] = useState([]);
   const Total = cartItem.reduce((total, product) => {
-    console.log('rerender')
-    return total += product.quantity * product.price;
-  }, 0)
+    return (total += product.quantity * product.price);
+  }, 0);
 
   // clone new product array
   useEffect(() => {
     setCartItem(cartElements);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartElements]);
-
 
   // Update product quantity
 
@@ -45,7 +43,6 @@ function Cart() {
       return item;
     });
   };
-
   const handleCheckout = (e) => {
     e.preventDefault();
     myAlert.Alert("success", "Checkout completed !!");
@@ -72,7 +69,7 @@ function Cart() {
                 <div key={index} className={styles.product_info}>
                   <div className={styles.info}>
                     <div className={styles.img}>
-                      <img src={product.img} alt="shoes" />
+                      <img src={product.img[3].url_img} alt={product.img[3].url_img} />
                     </div>
                     <div className={styles.detail_info}>
                       <p className={styles.name}>

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { publicRequest } from "../../request";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 function Products({ cat }) {
   const [products, setProduct] = useState([]);
   const user = useSelector((state) => state.user?.currentUser);
@@ -31,7 +33,7 @@ function Products({ cat }) {
       {products.slice(0, 8).map((product) => (
         <div key={product._id} className={styles.product_content}>
           <div className={styles.product_image}>
-            <img src={product.img} alt={product.img} />
+            <LazyLoadImage height='100%' effect="blur" src={product.img} alt={product.img} />
           </div>
           <div className={styles.product_info}>
             {/* <div className={styles.icon}>

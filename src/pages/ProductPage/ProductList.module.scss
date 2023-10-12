@@ -10,12 +10,20 @@
         @include responsive(phone){
             flex-direction: column;
             gap: 2rem;
+            padding-top: 7rem;
+        }
+        @include responsive(tablet){
+            gap: 2rem;
+            padding-top: 7rem;
         }
     
         select{
             padding: 10px;
             margin-top: -4px;
             @include responsive(phone){
+                padding-left: 15px;
+            }
+            @include responsive(tablet){
                 padding-left: 15px;
             }
     

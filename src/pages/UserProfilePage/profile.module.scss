@@ -7,14 +7,14 @@ $lable-color: #60596d;
     box-shadow: 1px 1px 5px 2px rgba(150,143,143,0.68);
     -webkit-box-shadow: 1px 1px 5px 2px rgba(150,143,143,0.68);
     -moz-box-shadow: 1px 1px 5px 2px rgba(150,143,143,0.68);
-    @include responsive(phone){
-        margin: 2rem;
-                    
-    }
     @include responsive(tablet){
-        margin: 3rem;
-                    
+        width: 90vw;
     }
+    @include responsive(phone){
+        width: 90vw;
+        padding: 2rem;
+    }
+
     .title{
         margin-bottom: 2rem;
         border-bottom: 0.5px solid #ccc;
@@ -25,61 +25,76 @@ $lable-color: #60596d;
     }
     .info{  
         display: flex;
+
         table{
             flex: 2;
-            tr,td{
-                padding: 1rem;
-                .Btn {
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100px;
-                    height: 40px;
-                    border: none;
-                    padding: 0px 20px;
-                    margin-top: 2rem;
-                    background-color: rgb(12, 104, 196);
-                    color: white;
-                    font-weight: 500;
-                    cursor: pointer;
-                    border-radius: 10px;
-                    box-shadow: 5px 5px 0px rgb(114, 172, 230);
-                    transition-duration: .3s;
-                  }
-                  .Btn:active {
-                    transform: translate(3px , 3px);
-                    transition-duration: .3s;
-                    box-shadow: 2px 2px 0px rgb(12, 104, 196);
+            tbody{
+
+                tr,td{
+                    padding: 1rem;
+                    @include responsive(phone){
+                        padding: 0;
+                    }
+                    .Btn {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100px;
+                        height: 40px;
+                        border: none;
+                        padding: 0px 20px;
+                        margin-top: 2rem;
+                        background-color: rgb(12, 104, 196);
+                        color: white;
+                        font-weight: 500;
+                        cursor: pointer;
+                        border-radius: 10px;
+                        box-shadow: 5px 5px 0px rgb(114, 172, 230);
+                        transition-duration: .3s;
+                        @include responsive(phone){
+                            height: 50px;
+                        }
+                    }
+                    .Btn:active {
+                        transform: translate(3px , 3px);
+                        transition-duration: .3s;
+                        box-shadow: 2px 2px 0px rgb(12, 104, 196);
+                    }
+                    .Btn_delete {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100px;
+                        height: 40px;
+                        border: none;
+                        padding: 0px 20px;
+                        margin-top: 2rem;
+                        background-color: rgb(196, 12, 12);
+                        color: white;
+                        font-weight: 500;
+                        cursor: pointer;
+                        border-radius: 10px;
+                        box-shadow: 5px 5px 0px rgb(227, 85, 85);
+                        transition-duration: .3s;
+                        @include responsive(phone){
+                            height: 50px;
+                        }
+                    }
+                    .Btn_delete:active {
+                        transform: translate(3px , 3px);
+                        transition-duration: .3s;
+                        box-shadow: 2px 2px 0px rgb(196, 12, 12);
+                    }
+    
                 }
-                .Btn_delete {
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100px;
-                    height: 40px;
-                    border: none;
-                    padding: 0px 20px;
-                    margin-top: 2rem;
-                    background-color: rgb(196, 12, 12);
-                    color: white;
-                    font-weight: 500;
-                    cursor: pointer;
-                    border-radius: 10px;
-                    box-shadow: 5px 5px 0px rgb(227, 85, 85);
-                    transition-duration: .3s;
-                  }
-                  .Btn_delete:active {
-                    transform: translate(3px , 3px);
-                    transition-duration: .3s;
-                    box-shadow: 2px 2px 0px rgb(196, 12, 12);
-                  }
+                th{
+                    float: left;
+                    padding: 1rem;
+                }
             }
-            th{
-                float: left;
-                padding: 1rem;
-            }
+            
         }
         .avatar{
             flex: 1;
@@ -90,6 +105,9 @@ $lable-color: #60596d;
                 cursor: pointer;
             }
             
+        }
+        @include responsive(phone){
+            flex-direction: column-reverse;
         }
             
     }

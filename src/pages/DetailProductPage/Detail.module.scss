@@ -1,7 +1,6 @@
 @import '../../components/GlobalStyles/GlobalStyles.scss';
 .detail_container{
     margin-top: 150px;
-
     .wrapper{
         display: flex;
         @include responsive(phone){
@@ -13,16 +12,32 @@
         .image_container{
             flex: 1;
             display: flex;
-            justify-content: center;
-            height: 80vh;
+            justify-content: center;            
             padding-bottom: 1rem;
+            flex-direction: column;
+            gap: 2rem;
             @include responsive(phone){
                 height: 40vh;
             }
             img{
                 object-fit: cover;
+                width: 500px;
+                height: 500px;
+                margin: auto;
                 @include responsive(tablet){
                     height: 60vh;
+                }
+                @include responsive(phone){
+                    height: 50vh;
+                }
+            }
+            .more_image{
+                margin: auto;   
+                display: flex;
+                gap: 1rem;
+                img{
+                    width: 80px;
+                    height: 80px;
                 }
             }
         }
@@ -38,6 +53,7 @@
                 gap: 1rem;
                 justify-content: center;
                 margin-bottom: 2rem;
+                width: fit-content;
             }
             @include responsive(tablet){
                 gap: 1rem;
@@ -83,7 +99,8 @@
                             width: 80px;
                             border: none;
                             @include responsive(phone){
-                               padding: 3px 4px;
+                               padding: 20px 10px;
+                               width: 100px;
                             }
                         }
                     }
@@ -111,7 +128,8 @@
                             width: 80px;
                             border: none;
                             @include responsive(phone){
-                               padding: 3px 4px;
+                               padding: 20px 10px;
+                               width: 100px;
                             }
                         }
                     }
@@ -144,6 +162,10 @@
                     font-size: 3rem;
                     cursor: pointer;
                 }
+                @include responsive(phone){
+                    font-size: 2.6rem;
+                }
+
             }
             .inStock{
                 font-size: 1.4rem;
@@ -159,6 +181,9 @@
                     &:hover{
                         box-shadow: 1px 3px 8px #000;
                         border: 2px solid teal;
+                    }
+                    @include responsive(phone){
+                        padding: 2rem;   
                     }
                 }
             }

@@ -9,14 +9,18 @@
     gap: 1rem;
     @include responsive (phone){
         flex-direction: column;
+        margin-top: 50px;
     }
     @include responsive (tablet){
         flex-direction: column;
+        margin-top: 50px;
+        padding: 35px;
     }
     .categories_content{
         height: 70vh;
         position: relative;
         flex: 1;
+
         .category_image{
             height: 100%;
             width: 100%;

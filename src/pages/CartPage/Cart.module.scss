@@ -1,10 +1,7 @@
 @import '../../components/GlobalStyles/GlobalStyles.scss';
 .wrapper{
     margin-top: 80px;
-    @include responsive(phone){
-        width: 80%;
-    }
-
+    
     .title{
         text-align: center;
         font-weight: 500;
@@ -69,7 +66,7 @@
                 justify-content: space-between;
                 border-bottom: 1px solid #cdcaca;
                 @include responsive(phone){
-                    justify-content: center;
+                    flex-direction: column;
                 }
                 .info{
                     display: flex;
@@ -78,7 +75,7 @@
                     gap: 2rem;
                     @include responsive(phone){
                         flex-direction: column;
-                        margin-left: 13rem;
+                        position: relative;
                     }
                     .detail_info{
                         display: flex;
@@ -91,20 +88,43 @@
                         .name{
                             text-transform: uppercase;
                         }
+                        @include responsive(tablet){
+                           gap: 1rem;
+                           padding: 1rem;
+                        }
+                        @include responsive(phone){
+                           padding: 0 1.5rem;
+                        }
                     }
                     img{
                         width: 200px;
                         height: 200px;
+                        @include responsive(tablet){
+                            width: 100%;
+                            object-fit: contain;
+                            padding-left: 1.5rem;
+                        }
+                        @include responsive(phone){
+                            width: 100%;
+                            object-fit: contain;
+                        }
                     }
+
                 }
                 .prices{
                     flex: 1;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-evenly;
+                    @include responsive(tablet){
+                        align-items: center;
+                        padding-right: 1rem;
+                    }
                     @include responsive(phone){
-                       justify-content: space-between;
-                       padding: 2rem 0;
+                        gap: 1.5rem;
+                        margin-top: -2rem;
+                        align-items: end;
+                        padding-right: 2rem;
                     }
                     .Quantity{
                         display: flex;
@@ -138,6 +158,7 @@
                     .price{
                         font-size: 3rem;
                         margin-left: 1rem;
+
                     }
 
                 }
@@ -146,8 +167,8 @@
                     padding: 10px;
                     cursor: pointer;
                     @include responsive(phone){
-                        margin-right: 1rem;
-                        padding-right: 4rem;
+                        position: absolute;
+                        right: 0;
                     }
                 }
             }
