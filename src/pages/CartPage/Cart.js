@@ -47,6 +47,8 @@ function Cart() {
     e.preventDefault();
     myAlert.Alert("success", "Checkout completed !!");
   };
+
+  console.log(cart)
   return (
     <div className={styles.cart_container}>
       <Header />

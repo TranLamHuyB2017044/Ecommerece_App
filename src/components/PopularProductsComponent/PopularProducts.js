@@ -33,7 +33,12 @@ function Products({ cat }) {
       {products.slice(0, 8).map((product) => (
         <div key={product._id} className={styles.product_content}>
           <div className={styles.product_image}>
-            <LazyLoadImage height='100%' effect="blur" src={product.img} alt={product.img} />
+            <LazyLoadImage
+              height="100%"
+              effect="blur"
+              src={product.img[3].url_img}
+              alt={product.img[3].url_img}
+            />
           </div>
           <div className={styles.product_info}>
             {/* <div className={styles.icon}>

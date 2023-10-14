@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartRedux";
 import MyAlert from "../../components/AlertComponent/Alert";
-
 function DetailProduct() {
   const [product, setproduct] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -61,22 +60,92 @@ function DetailProduct() {
 
   const handleChangeImg = (index) => {
     product.img?.map((img_item, i) => {
-      if(i === index) {
-        setImg(img_item.url_img)
+      if (i === index) {
+        setImg(img_item.url_img);
       }
-      return img_item.url_img
-    })
-  }
+      return img_item.url_img;
+    });
+  };
 
+  const [checkpoints] = useState([
+    {
+      id: 1,
+      x: 320,
+      y: 467,
+      info: "Đế giữa Bounce",
+    },
+    {
+      id: 2,
+      x: 500,
+      y: 420,
+      info: "Thân giày bằng vải lưới thoáng khí",
+    },
+    {
+      id: 3,
+      x: 240,
+      y: 375,
+      info: "Cổ giày lót đệm Geofit",
+    },
+    {
+      id: 4,
+      x: 380,
+      y: 400,
+      info: "Thân giày có chứa tối thiểu 50% thành phần tái chế",
+    },
+  ]);
+
+  const [showInfo, setShowInfo] = useState(false)
+  const [checkPointId, setCheckPointId] = useState(1)
+  const handleShowInfo = (id) => {
+    checkpoints.map((check) => {
+      if(check.id === id){
+        setShowInfo(!showInfo)
+        setCheckPointId(check.id)
+      }
+      return false
+    })
+
+  };
   return (
     <div className={styles.detail_container}>
       <Header />
       <div className={styles.wrapper}>
         <div className={styles.image_container}>
           <img src={img} alt="img-detail" />
+          {img === 'https://res.cloudinary.com/dfnwnhng8/image/upload/v1697096199/product_img/yljygqou1crfwob3rtib.avif' ? checkpoints.map((checkpoint) => (
+            <div 
+              onClick={() => handleShowInfo(checkpoint.id)}
+              style={{
+                left: checkpoint.x,
+                top: checkpoint.y,
+                backgroundColor: showInfo && checkpoint.id === checkPointId ? "teal" : "black",
+              }} 
+              key={checkpoint.id} 
+              className={styles.checkPoint}
+              >
+                <p 
+                  className={styles.info}
+                  style={{
+                    backgroundColor: showInfo && checkpoint.id === checkPointId ? "white" : "",
+                    zIndex: showInfo && checkpoint.id === 1 ? '1' : '',
+                    border: showInfo && checkpoint.id === checkPointId ? "1px solid teal" : "",
+                  }}
+                >{showInfo && checkpoint.id === checkPointId ? checkpoint.info : ''}</p>
+            </div>
+          )) : ''}
           <div className={styles.more_image}>
             {product.img?.map((img_item, index) => (
-                <img key={index} onClick={() => handleChangeImg(index)} src={img_item.url_img} alt="img-detail" />
+              <img
+                key={index}
+                style={
+                  img === img_item.url_img
+                    ? { border: "3px solid teal" }
+                    : { border: "none" }
+                }
+                onClick={() => handleChangeImg(index)}
+                src={img_item.url_img}
+                alt="img-detail"
+              />
             ))}
           </div>
         </div>

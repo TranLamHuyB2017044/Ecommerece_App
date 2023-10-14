@@ -20,6 +20,7 @@
                 height: 40vh;
             }
             img{
+                position: relative;
                 object-fit: cover;
                 width: 500px;
                 height: 500px;
@@ -29,6 +30,20 @@
                 }
                 @include responsive(phone){
                     height: 50vh;
+                }
+                
+            }
+            .checkPoint{
+                position: absolute;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                .info{
+                    position: relative;
+                    top: -9rem;
+                    left: 1rem;
+                    border-radius: 10px;
+                    transition: all .5s ease-in-out;
                 }
             }
             .more_image{
