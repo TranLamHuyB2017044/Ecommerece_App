@@ -2,22 +2,22 @@ import Header from "../../components/HeaderComponent/Header";
 import Footer from "../../components/FooterComponent/Footer";
 import styles from "./Detail.module.scss";
 import { useEffect, useState } from "react";
-import { publicRequest } from "../../request";
+import { publicRequest, userRequest } from "../../request";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/cartRedux";
+import { useDispatch, useSelector } from "react-redux";
 import MyAlert from "../../components/AlertComponent/Alert";
+import { addProduct } from "../../redux/cartRedux";
 function DetailProduct() {
   const [product, setproduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const [img, setImg] = useState("");
-  const dispatch = useDispatch();
   const localtion = useLocation();
   const id = localtion.pathname.split("/")[2];
-  // const user = useSelector((state) => state.user.currentUser);
-  // const userId = user.data.others._id;
+  const user = useSelector((state) => state.user.currentUser);
+  const userId = user.data.others._id;
+  const dispatch = useDispatch()
   useEffect(() => {
     const productList = async () => {
       const rs = await publicRequest.get(`/product/${id}/`);
@@ -26,7 +26,6 @@ function DetailProduct() {
     productList();
   }, [id]);
 
-  // const [activeImage, setActiveImage] = useState(product.img)
   useEffect(() => {
     product.img?.map((item, index) => {
       if (index === 3) {
@@ -52,12 +51,15 @@ function DetailProduct() {
       MyAlert.Toast("error", "please select a size first !");
       return false;
     } else {
-      dispatch(addProduct({ ...product, quantity, size, color }));
-      // await usercRequest.put(`/user/${userId}`, { cart: id });
+      const productId = id
+      const products = [{productId, quantity, size, color}]
+      await publicRequest.post('/cart/', {userId, products })
       MyAlert.Toast("success", "Product added successfully");
+      const rs = await userRequest.get(`/cart/${userId}`)
+      dispatch(addProduct(rs.data.products))
     }
   };
-
+  
   const handleChangeImg = (index) => {
     product.img?.map((img_item, i) => {
       if (i === index) {
@@ -67,6 +69,7 @@ function DetailProduct() {
     });
   };
 
+  // add checkpoints to image
   const [checkpoints] = useState([
     {
       id: 1,
@@ -127,6 +130,7 @@ function DetailProduct() {
                   className={styles.info}
                   style={{
                     backgroundColor: showInfo && checkpoint.id === checkPointId ? "white" : "",
+                    width: '350px',
                     zIndex: showInfo && checkpoint.id === 1 ? '1' : '',
                     border: showInfo && checkpoint.id === checkPointId ? "1px solid teal" : "",
                   }}

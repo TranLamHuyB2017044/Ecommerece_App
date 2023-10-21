@@ -8,7 +8,7 @@ import Header from "../components/HeaderComponent/Header";
 // import NavBar from "../components/NavBarComponent/NavBar";
 import GoToTop from "../components/GoToTopComponent/GoToTop";
 function Home() {
-
+    
     return ( 
         <div className="home_content">
             <Header />

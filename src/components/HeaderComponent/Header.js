@@ -7,16 +7,17 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 import { Logout } from "../../redux/userRedux";
 import localStorage from "redux-persist/es/storage";
-import {  useState, useRef, useEffect } from "react";
+import {  useState, useRef } from "react";
 import NavBar from "../NavBarComponent/NavBar";
+
 function Header() {
-  const quantity = useSelector((state) => state.cart.quantity);
+  
   const userInfo = useSelector((state) => state.user.currentUser);
+  const cartProducts = useSelector((state) => state.cart.products)
+  const quantity = cartProducts.length
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [productsSearch, setProductsSearch] = useState('');
-  const [productsItem, setProductsItem] = useState([])
-  const cartItems = useSelector((state) => state.cart.products);
   const name = userInfo?.data?.others.username;
   const avatarUser = userInfo?.data?.others.avatar
   const refInput = useRef()
@@ -36,15 +37,16 @@ function Header() {
       }
       
   }
+
+
   const handleEnterChange = (e) => {
     if(e.key === "Enter") {
         handleChange()
     }
     
   }
-  useEffect(()=>{
-    setProductsItem(cartItems)
-  }, [cartItems])
+
+
 
   return (
     <div className={styles.header_container}>
@@ -104,10 +106,10 @@ function Header() {
               <div>
                 <ShoppingCartOutlinedIcon />
               </div>
-              {productsItem.length > 0 ? (
+              {cartProducts.length > 0 ? (
                 <div className={styles.showCart}>
                   {showCart &&
-                    productsItem
+                    cartProducts
                       .slice(-5)
                       .map((item, index) => (
                         <ul key={index} className={styles.cart_menu}>
@@ -116,15 +118,15 @@ function Header() {
                               width="50px"
                               height="50px"
                               className={styles.item_img}
-                              src={item.img[3].url_img}
-                              alt={item.img[3].url_img}
+                              src={item.productId.img[3].url_img}
+                              alt={item.productId.title}
                             />
                           </li>
                           <li className={styles.cart_item}>
-                            <p className={styles.item_name}>{item.title}</p>
+                            <p className={styles.item_name}>{item.productId.title}</p>
                           </li>
                           <li className={styles.cart_item}>
-                            <p className={styles.item_price}>{item.price}$</p>
+                            <p className={styles.item_price}>{item.productId.price}$</p>
                           </li>
                         </ul>
                       )).reverse()}

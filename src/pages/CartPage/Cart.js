@@ -7,30 +7,24 @@ import {
   incrementQuantity,
   removeProduct,
 } from "../../redux/cartRedux";
+import {userRequest} from '../../request'
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import myAlert from "../../components/AlertComponent/Alert";
-import { useEffect, useState } from "react";
+
 
 function Cart() {
-  const cart = useSelector((state) => state.cart);
-  const cartElements = cart.products;
   const dispatch = useDispatch();
-  const [cartItem, setCartItem] = useState([]);
-  const Total = cartItem.reduce((total, product) => {
-    return (total += product.quantity * product.price);
+  const cartProducts = useSelector((state) => state.cart.products);
+  const userId = useSelector((state) => state.user.currentUser?.data.others._id)
+  const Total = cartProducts.reduce((total, product) => {
+    return (total += product.quantity * product.productId.price);
   }, 0);
 
-  // clone new product array
-  useEffect(() => {
-    setCartItem(cartElements);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cartElements]);
-
   // Update product quantity
-
+  console.log(cartProducts)
   const handleClick = (index, type) => {
-    cartItem.map((item, i) => {
+    cartProducts.map((item, i) => {
       if (type === "incr") {
         if (i === index) {
           dispatch(incrementQuantity(i));
@@ -43,12 +37,20 @@ function Cart() {
       return item;
     });
   };
+  const handleDeleteProduct =  (id) => {
+    cartProducts.map(async (product) => {
+      if(product._id === id) {
+        await userRequest.delete(`/cart/${userId}`, id)
+        dispatch(removeProduct(id))
+      }
+      return product
+    })
+  }
   const handleCheckout = (e) => {
     e.preventDefault();
     myAlert.Alert("success", "Checkout completed !!");
   };
 
-  console.log(cart)
   return (
     <div className={styles.cart_container}>
       <Header />
@@ -59,35 +61,38 @@ function Cart() {
             <button className={styles.continue}>CONTINUE SHOPPING</button>
           </Link>
           <div className={styles.top_center}>
-            <p>Shopping bag ({cart.quantity})</p>
+            <p>Shopping bag ({cartProducts.length})</p>
             <p>Your Wishlist (0)</p>
           </div>
           <button className={styles.checkout}>CHECKOUT NOW</button>
         </div>
         <div className={styles.bot}>
           <div className={styles.bot_left}>
-            {cartItem
+            {cartProducts
               .map((product, index) => (
                 <div key={index} className={styles.product_info}>
                   <div className={styles.info}>
                     <div className={styles.img}>
-                      <img src={product.img[3].url_img} alt={product.img[3].url_img} />
+                      <img
+                        src={product.productId.img[3].url_img}
+                        alt={product.productId.title}
+                      />
                     </div>
                     <div className={styles.detail_info}>
                       <p className={styles.name}>
-                        <span style={{ fontWeight: "bold" }}>Product:</span>{" "}
-                        {product.title}
+                        <span style={{ fontWeight: "bold" }}>Product: </span>
+                        {product.productId.title}
                       </p>
                       <p className={styles.id}>
-                        <span style={{ fontWeight: "bold" }}>ID:</span>{" "}
-                        {product._id}
+                        <span style={{ fontWeight: "bold" }}>ID: </span>
+                        {product.productId._id}
                       </p>
                       <p className={styles.size}>
-                        <span style={{ fontWeight: "bold" }}>Color:</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Color: </span>
                         {product.color}
                       </p>
                       <p className={styles.size}>
-                        <span style={{ fontWeight: "bold" }}>Size:</span>{" "}
+                        <span style={{ fontWeight: "bold" }}>Size: </span>
                         {product.size}
                       </p>
                     </div>
@@ -109,13 +114,14 @@ function Cart() {
                       </p>
                     </div>
                     <div className={styles.price}>
-                      $ {(product.price * product.quantity).toFixed(2)}
+                      ${" "}
+                      {(product.productId.price * product.quantity).toFixed(2)}
                     </div>
                   </div>
                   <div className={styles.remove}>
                     <p
-                      className={product._id}
-                      onClick={() => dispatch(removeProduct(index))}
+                      className={product.id}
+                      onClick={() => handleDeleteProduct(product._id)}
                     >
                       &times;
                     </p>
