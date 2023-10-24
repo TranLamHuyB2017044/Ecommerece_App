@@ -172,6 +172,22 @@
                     }
                 }
             }
+            .empty_cart{
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.2rem;
+                p{
+                    color: #888383;
+                    font-size: 2rem;
+                }
+                button{
+                    padding: 10px 10px;
+                    font-size: 1.6rem;
+                    cursor: pointer;
+                }
+            }
         }
         .summary_order{
             flex: 1;

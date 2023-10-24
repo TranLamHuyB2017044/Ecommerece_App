@@ -29,7 +29,7 @@ function Search() {
     const queryProduct = async () => {
       const product = await publicRequest.get(`/product/${query}`);
       setProduct(product.data);
-      console.log(product);
+      console.log(product.data);
     };
     queryProduct();
   }, [query]);
@@ -104,7 +104,7 @@ function Search() {
           {filtersProduct.map((product) => (
             <div key={product._id} className={styles.product_content}>
               <div className={styles.product_image}>
-                <img src={product.img} alt={product.img} />
+                <img src={product.img[3].url_img} alt={product.title} />
               </div>
               <div className={styles.product_info}>
                 <div className={styles.icon}>

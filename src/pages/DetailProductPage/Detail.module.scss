@@ -38,6 +38,16 @@
                 border-radius: 50%;
                 width: 20px;
                 height: 20px;
+                cursor: pointer;
+                @include responsive(tablet){
+                    display: none;
+                }
+                @include responsive(phone){
+                    display: none;
+                }
+                @include responsive(pc){
+                    display: none;
+                }
                 .info{
                     position: relative;
                     top: -10rem;

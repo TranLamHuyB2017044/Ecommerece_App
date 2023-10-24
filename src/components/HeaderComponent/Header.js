@@ -104,7 +104,7 @@ function Header() {
               onMouseOver={() => setShowCart(true)}
             >
               <div>
-                <ShoppingCartOutlinedIcon />
+                <Link to='/cart'><ShoppingCartOutlinedIcon /></Link>
               </div>
               {cartProducts.length > 0 ? (
                 <div className={styles.showCart}>

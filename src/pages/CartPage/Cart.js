@@ -22,7 +22,6 @@ function Cart() {
   }, 0);
 
   // Update product quantity
-  console.log(cartProducts)
   const handleClick = (index, type) => {
     cartProducts.map((item, i) => {
       if (type === "incr") {
@@ -38,12 +37,12 @@ function Cart() {
     });
   };
   const handleDeleteProduct =  (id) => {
-    cartProducts.map(async (product) => {
-      if(product._id === id) {
-        await userRequest.delete(`/cart/${userId}`, id)
+    // eslint-disable-next-line array-callback-return
+    cartProducts.map((product, index) => {
+      if(index === id) {
+        userRequest.delete(`/cart/${userId}`,  {data: {productIndex: id}})
         dispatch(removeProduct(id))
       }
-      return product
     })
   }
   const handleCheckout = (e) => {
@@ -68,7 +67,7 @@ function Cart() {
         </div>
         <div className={styles.bot}>
           <div className={styles.bot_left}>
-            {cartProducts
+            {cartProducts.length > 0 ? cartProducts
               .map((product, index) => (
                 <div key={index} className={styles.product_info}>
                   <div className={styles.info}>
@@ -121,14 +120,20 @@ function Cart() {
                   <div className={styles.remove}>
                     <p
                       className={product.id}
-                      onClick={() => handleDeleteProduct(product._id)}
+                      onClick={() => handleDeleteProduct(index)}
                     >
                       &times;
                     </p>
                   </div>
                 </div>
-              ))
-              .reverse()}
+              )).reverse()  
+              : 
+              <div className={styles.empty_cart}>
+                <img width='120px' src='https://png.pngtree.com/png-clipart/20221223/ourmid/pngtree-shoping-clipart-image-download-vector-art-png-image_6534634.png' alt="src" />
+                <p>Your shopping cart is empty</p>
+                <Link to="/products"><button>Go shopping now</button></Link>
+              </div>
+            }
           </div>
           <div className={styles.summary_order}>
             <form className={styles.form_order}>
