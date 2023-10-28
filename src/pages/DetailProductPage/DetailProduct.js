@@ -2,7 +2,7 @@ import Header from "../../components/HeaderComponent/Header";
 import Footer from "../../components/FooterComponent/Footer";
 import styles from "./Detail.module.scss";
 import { useEffect, useState } from "react";
-import { publicRequest, userRequest } from "../../request";
+import { publicRequest } from "../../request";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MyAlert from "../../components/AlertComponent/Alert";
@@ -52,10 +52,11 @@ function DetailProduct() {
       return false;
     } else {
       const productId = id
+      const token = localStorage.getItem('access_token');
       const products = [{productId, quantity, size, color}]
       await publicRequest.post('/cart/', {userId, products })
       MyAlert.Toast("success", "Product added successfully");
-      const rs = await userRequest.get(`/cart/${userId}`)
+      const rs = await publicRequest.get(`/cart/${userId}`, {headers: {token: `Bearer ${token}`}})
       dispatch(addProduct(rs.data.products))
     }
   };

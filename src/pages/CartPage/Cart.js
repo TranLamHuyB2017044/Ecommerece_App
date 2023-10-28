@@ -7,7 +7,7 @@ import {
   incrementQuantity,
   removeProduct,
 } from "../../redux/cartRedux";
-import {userRequest} from '../../request'
+import {publicRequest} from '../../request'
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import myAlert from "../../components/AlertComponent/Alert";
@@ -40,7 +40,8 @@ function Cart() {
     // eslint-disable-next-line array-callback-return
     cartProducts.map((product, index) => {
       if(index === id) {
-        userRequest.delete(`/cart/${userId}`,  {data: {productIndex: id}})
+        const token = localStorage.getItem('access_token');
+        publicRequest.delete(`/cart/${userId}`,  {data: {productIndex: id}, headers: {token: `Bearer ${token}`}})
         dispatch(removeProduct(id))
       }
     })

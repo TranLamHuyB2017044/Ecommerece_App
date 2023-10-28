@@ -5,13 +5,30 @@ import ProductList from "./pages/ProductPage/ProductList";
 import DetailProduct from './pages/DetailProductPage/DetailProduct'
 import Register from "./pages/AuthPage/Register";
 import SignIn from "./pages/AuthPage/SignIn";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Search from "./pages/SearchPage/Search";
 import Profile from "./pages/UserProfilePage/Profile";
 import EditProfile from "./pages/EditProfilePage/EditProfile";
 import Test from "./pages/Test";
+import { addProduct } from "./redux/cartRedux";
+import { publicRequest } from "./request";
+import { useEffect } from "react";
 function App() {
+  const dispatch = useDispatch();
   const user = useSelector(state => state.user.currentUser)
+  const userId = user?.data?.others._id
+  const cart_id = user?.data?.others.cart
+  useEffect(() => {
+    const cartApi = async () => {
+        const token = localStorage.getItem('access_token');
+        if (cart_id != null) {
+            const rs = await publicRequest.get(`/cart/${userId}`,  {headers: {token: `Bearer ${token}`}});
+            dispatch(addProduct(rs.data?.products));
+            console.log(rs.data.products);
+        }else return
+    };
+    cartApi();
+  }, [userId, dispatch, cart_id]);
   const ProtectedRoute = () => {
     if (user) {
       return <Navigate to='/' replace />;

@@ -13,8 +13,8 @@ import NavBar from "../NavBarComponent/NavBar";
 function Header() {
   
   const userInfo = useSelector((state) => state.user.currentUser);
-  const cartProducts = useSelector((state) => state.cart.products)
-  const quantity = cartProducts.length
+  const cartProducts = useSelector((state) => state.cart?.products)
+  const quantity = cartProducts?.length
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [productsSearch, setProductsSearch] = useState('');
@@ -22,12 +22,12 @@ function Header() {
   const avatarUser = userInfo?.data?.others.avatar
   const refInput = useRef()
   const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("persist:root");
-    localStorage.removeItem("access_token");
+  const handleLogout = async () => {
     navigate("/login");
     Logout();
     window.location.reload()
+    await localStorage.removeItem("persist:root");
+    await localStorage.removeItem("access_token");
   };
   const handleChange = () => {
       if(refInput.current.value !== ''){
@@ -106,7 +106,7 @@ function Header() {
               <div>
                 <Link to='/cart'><ShoppingCartOutlinedIcon /></Link>
               </div>
-              {cartProducts.length > 0 ? (
+              {quantity > 0 ? (
                 <div className={styles.showCart}>
                   {showCart &&
                     cartProducts
