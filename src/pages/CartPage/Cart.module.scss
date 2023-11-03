@@ -88,6 +88,122 @@
                         .name{
                             text-transform: uppercase;
                         }
+                        .color{
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+                            font-size: 1.8rem;
+                           .update{
+                                padding: 5px 12px;
+                                display: flex;
+                                width: fit-content;
+                                align-items: center;
+                                gap: 0.5rem;
+                                cursor: pointer;
+                                opacity: 0.8;
+                                &:hover{
+                                    opacity: 1;
+                                }
+                            } 
+                            .update_colors{
+                                display: flex;
+                                flex-direction: column;
+                                border-radius: 3px;
+                                background-color: white;
+                                border: 1px solid #ccc;
+                                position: absolute;
+                                top: 35px;
+                                padding: 1rem 1.5rem;
+                                width: 315px;
+                                height: auto;
+                                gap: 2rem;
+                                z-index: 20;
+                                .colors_option{
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    gap: 1rem;
+                                    button{
+                                        padding: 10px 15px;
+                                        width: 80px;
+                                        background-color: #fff;
+                                        border: 1px solid #ccc;
+                                        cursor: pointer;
+                                    }
+                                }
+                                .confirm{
+                                    background-color: teal;
+                                    border-radius: 2px;
+                                    border: 1px #ccc;
+                                    padding: 10px 15px;
+                                    margin-left: auto;
+                                    cursor: pointer;
+                                    opacity: 1;
+                                    &:hover{
+                                        opacity: 0.8;
+                                    }
+
+                                }
+
+                            }
+                        }
+                        .size{
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+                            font-size: 1.8rem;
+                           .update{
+                                padding: 5px 12px;
+                                display: flex;
+                                width: fit-content;
+                                align-items: center;
+                                gap: 0.5rem;
+                                cursor: pointer;
+                                opacity: 0.8;
+                                &:hover{
+                                    opacity: 1;
+                                }
+                            } 
+                            .update_sizes{
+                                display: flex;
+                                flex-direction: column;
+                                border-radius: 3px;
+                                background-color: white;
+                                border: 1px solid #ccc;
+                                position: absolute;
+                                top: 35px;
+                                padding: 1rem 1.5rem;
+                                width: 315px;
+                                height: auto;
+                                gap: 2rem;
+                                z-index: 20;
+                                .sizes_option{
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    gap: 1rem;
+                                    button{
+                                        padding: 10px 15px;
+                                        width: 80px;
+                                        background-color: #fff;
+                                        border: 1px solid #ccc;
+                                        cursor: pointer;
+                                    }
+                                }
+                                .confirm{
+                                    background-color: teal;
+                                    border-radius: 2px;
+                                    border: 1px #ccc;
+                                    padding: 10px 15px;
+                                    margin-left: auto;
+                                    cursor: pointer;
+                                    opacity: 1;
+                                    &:hover{
+                                        opacity: 0.8;
+                                    }
+
+                                }
+
+                            }
+                        }
                         @include responsive(tablet){
                            gap: 1rem;
                            padding: 1rem;
@@ -100,13 +216,12 @@
                         width: 200px;
                         height: 200px;
                         @include responsive(tablet){
-                            width: 100%;
-                            object-fit: contain;
                             padding-left: 1.5rem;
                         }
                         @include responsive(phone){
                             width: 100%;
-                            object-fit: contain;
+                            height: 100%;
+                            object-fit: cover;
                         }
                     }
 

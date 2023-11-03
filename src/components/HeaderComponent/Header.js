@@ -13,8 +13,9 @@ import NavBar from "../NavBarComponent/NavBar";
 function Header() {
   
   const userInfo = useSelector((state) => state.user.currentUser);
-  const cartProducts = useSelector((state) => state.cart?.products)
-  const quantity = cartProducts?.length
+  const Cart = useSelector((state) => state.cart)
+  const cartProducts = Cart?.products
+  const quantity = Cart?.quantity
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [productsSearch, setProductsSearch] = useState('');

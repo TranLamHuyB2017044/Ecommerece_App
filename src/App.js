@@ -24,7 +24,6 @@ function App() {
         if (cart_id != null) {
             const rs = await publicRequest.get(`/cart/${userId}`,  {headers: {token: `Bearer ${token}`}});
             dispatch(addProduct(rs.data?.products));
-            console.log(rs.data.products);
         }else return
     };
     cartApi();

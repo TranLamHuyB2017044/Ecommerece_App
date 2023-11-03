@@ -55,7 +55,7 @@ function DetailProduct() {
       const token = localStorage.getItem('access_token');
       const products = [{productId, quantity, size, color}]
       await publicRequest.post('/cart/', {userId, products })
-      MyAlert.Toast("success", "Product added successfully");
+      MyAlert.Alert("success", "Product added successfully");
       const rs = await publicRequest.get(`/cart/${userId}`, {headers: {token: `Bearer ${token}`}})
       dispatch(addProduct(rs.data.products))
     }

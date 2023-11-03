@@ -10,6 +10,7 @@ const CartSlice = createSlice({
 
     addProduct: (state, action) => {
       state.products = action.payload
+      state.quantity = state.products.length
     },
     removeProduct: (state, action) => {
       state.products.splice(action.payload, 1);
