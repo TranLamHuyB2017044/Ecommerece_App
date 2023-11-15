@@ -10,7 +10,6 @@ import {
 import { publicRequest } from "../../request";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import myAlert from "../../components/AlertComponent/Alert";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { useState } from "react";
 
@@ -39,7 +38,6 @@ function Cart() {
             _id: item._id,
             quantity: item.quantity + 1,
           });
-          console.log(item);
         }
       } else {
         if (i === index) {
@@ -50,7 +48,6 @@ function Cart() {
               _id: item._id,
               quantity: item.quantity - 1,
             });
-            console.log(item);
           }
         }
       }
@@ -110,10 +107,6 @@ function Cart() {
       }
       return product;
     });
-  };
-  const handleCheckout = (e) => {
-    e.preventDefault();
-    myAlert.Alert("success", "Checkout completed !!");
   };
   return (
     <div className={styles.cart_container}>
@@ -308,9 +301,9 @@ function Cart() {
                 <p className={styles.total}>Total: </p>
                 <p className={styles.total_price}>$ {Total}</p>
               </div>
-              <button onClick={handleCheckout} className={styles.submit}>
-                Checkout Now
-              </button>
+              <Link to="/checkout" style={{marginLeft: 'auto'}}>
+                <button className={styles.submit}>Checkout Now</button>
+              </Link>
             </form>
           </div>
         </div>

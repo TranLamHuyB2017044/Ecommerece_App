@@ -13,6 +13,7 @@ import Test from "./pages/Test";
 import { addProduct } from "./redux/cartRedux";
 import { publicRequest } from "./request";
 import { useEffect } from "react";
+import Checkout from "./pages/CheckoutPage/Checkout";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.currentUser)
@@ -51,11 +52,13 @@ function App() {
           <Route path="/login" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
         </Route>
-        <Route path="/cart" element={<Cart />} />
+
         <Route path="/search" element={<Search />} />
         <Route element={<ProtectUser/>} >
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/profile/edit/:id" element={<EditProfile/>}/>
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
         <Route path="/3d" element={<Test/>} />
         <Route path="*" element={<p>There's nothing here: 404!</p>} />

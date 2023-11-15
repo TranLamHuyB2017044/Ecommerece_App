@@ -3,7 +3,7 @@ import Toast from "sweetalert2";
 class MyAlert {
   Alert(icon, text) {
     Swal.fire({
-      position: "center",
+      position: "top",
       icon: icon,
       text: text,
       showConfirmButton: false,

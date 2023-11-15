@@ -1,0 +1,264 @@
+.checkout_contents {
+  height: 100vh;
+  margin-top: 100px;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20rem;
+  gap: 2rem;
+
+  .popup_overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .popup_content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    p {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .form {
+        min-width: 400px;
+      .formGroup {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+
+        label {
+          font-size: 1.7rem;
+          color: #8094b7;
+          flex: 1;
+        }
+
+        input:not([type="file"]) {
+          flex: 3;
+          height: 40px;
+          font-size: 15px;
+          border-radius: 5px;
+          padding-left: 1rem;
+          border: 0.5px solid rgba(128, 148, 183, 0.7);
+
+          &:focus {
+            outline: rgb(37, 88, 175);
+          }
+        }
+      }
+    }
+    .button{
+        display: flex;
+        justify-content: flex-end;
+        gap: 2rem;
+        margin-top: 3rem;
+        .button_cancel{
+            background-color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        } 
+        .button_confirm{
+            background-color: teal;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+    }
+  }
+
+  .delivery_address {
+    border-bottom: 1px solid teal;
+    padding: 2rem;
+
+    strong {
+      font-size: 2rem;
+
+      svg {
+        font-size: 2rem;
+      }
+    }
+
+    .address {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+
+      .change {
+        color: blue;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .products_ordered {
+    border-bottom: 1px solid teal;
+
+    .feature {
+      display: flex;
+      justify-content: space-between;
+
+      strong {
+        font-size: 2rem;
+      }
+
+      .sub_quantity {
+        display: flex;
+        justify-content: space-between;
+        min-width: 420px;
+
+        p {
+          min-width: 80px;
+        }
+      }
+    }
+
+    .items {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      padding-bottom: 1rem;
+
+      .product_info {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        img {
+          width: 60px;
+          height: 60px;
+        }
+
+        .title {
+          min-width: 250px;
+        }
+
+        .varian {
+          opacity: 0.7;
+          margin-left: 1rem;
+        }
+      }
+
+      .sub_quantity {
+        display: flex;
+        justify-content: space-between;
+        min-width: 400px;
+
+        p {
+          min-width: 80px;
+        }
+      }
+    }
+  }
+
+  .payment_method {
+    border-bottom: 0.5px solid rgb(113, 131, 131);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    .select_method {
+      display: flex;
+      flex-direction: column;
+
+      strong {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .Payments {
+        .methods {
+          display: flex;
+          gap: 2rem;
+          border: 1px solid #ccc;
+          padding: 10px;
+          margin-top: 2rem;
+          justify-content: space-between;
+          align-items: center;
+
+          svg {
+            font-size: 2rem;
+            color: red;
+          }
+        }
+      }
+    }
+
+    .shipping_options {
+      display: flex;
+      flex-direction: column;
+
+      strong {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .Shipping {
+        .methods {
+          display: flex;
+          gap: 2rem;
+          justify-content: space-between;
+          border: 1px solid #ccc;
+          padding: 10px 20px;
+          margin-top: 2rem;
+        }
+      }
+    }
+
+    .summary_order {
+      padding: 2rem;
+
+      .form_order {
+        border-radius: 5px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 1.5rem;
+
+        .form_group {
+          display: flex;
+          justify-content: space-between;
+          gap: 2rem;
+        }
+      }
+    }
+  }
+
+  .Checkout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    p {
+      opacity: 0.6;
+    }
+
+    .submit {
+      padding: 10px 30px;
+      margin-right: 5rem;
+      border: 1px solid teal;
+      cursor: pointer;
+      opacity: 0.7;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
