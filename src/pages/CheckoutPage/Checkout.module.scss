@@ -1,3 +1,5 @@
+@import "../../components/GlobalStyles/GlobalStyles.scss";
+
 .checkout_contents {
   height: 100vh;
   margin-top: 100px;
@@ -8,7 +10,10 @@
   flex-direction: column;
   margin-bottom: 20rem;
   gap: 2rem;
-
+  @include responsive(tablet){
+      height: auto;
+      margin-bottom: 0;
+  }
   .popup_overlay {
     position: fixed;
     width: 100%;
@@ -33,7 +38,10 @@
       font-weight: bold;
     }
     .form {
-        min-width: 400px;
+      min-width: 400px;
+      @include responsive(phone) {
+        min-width: 300px;
+      }
       .formGroup {
         display: flex;
         justify-content: space-between;
@@ -60,30 +68,32 @@
         }
       }
     }
-    .button{
-        display: flex;
-        justify-content: flex-end;
-        gap: 2rem;
-        margin-top: 3rem;
-        .button_cancel{
-            background-color: white;
-            padding: 10px 15px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-        } 
-        .button_confirm{
-            background-color: teal;
-            padding: 10px 15px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-        }
+    .button {
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+      margin-top: 3rem;
+      .button_cancel {
+        background-color: white;
+        padding: 10px 15px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+      }
+      .button_confirm {
+        background-color: teal;
+        padding: 10px 15px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+      }
     }
   }
 
   .delivery_address {
     border-bottom: 1px solid teal;
     padding: 2rem;
-
+    @include responsive(phone) {
+      font-size: 1.4rem;
+    }
     strong {
       font-size: 2rem;
 
@@ -106,13 +116,14 @@
 
   .products_ordered {
     border-bottom: 1px solid teal;
-
     .feature {
       display: flex;
       justify-content: space-between;
 
+
       strong {
         font-size: 2rem;
+
       }
 
       .sub_quantity {
@@ -120,6 +131,28 @@
         justify-content: space-between;
         min-width: 420px;
 
+        @include responsive(tablet) {
+          min-width: 200px;
+        }
+        @include responsive(phone) {
+          min-width: 100px;
+          font-size: 1.4rem;
+        }
+        .unit {
+          @include responsive(tablet) {
+            display: none;
+            justify-content: center;
+          }
+          @include responsive(phone) {
+            display: none;
+            justify-content: center;
+          }
+        }
+        .amount{
+          @include responsive(phone) {
+           display: none; 
+          }
+        }
         p {
           min-width: 80px;
         }
@@ -132,12 +165,25 @@
       margin-top: 2rem;
       padding-top: 2rem;
       padding-bottom: 1rem;
-
+      @include responsive(tablet) {
+        justify-content: center;
+        font-size: 1rem;
+      }
+      @include responsive(phone) {
+        justify-content: center;
+        gap: 1rem;
+      }
       .product_info {
         display: flex;
         align-items: center;
         gap: 2rem;
-
+        @include responsive(tablet) {
+          gap: 0;
+          margin-right: 1rem;
+        }
+        @include responsive(phone) {
+          gap: 1rem;
+        }
         img {
           width: 60px;
           height: 60px;
@@ -150,6 +196,9 @@
         .varian {
           opacity: 0.7;
           margin-left: 1rem;
+          @include responsive(phone) {
+            margin-left: -130px;
+          }
         }
       }
 
@@ -157,9 +206,30 @@
         display: flex;
         justify-content: space-between;
         min-width: 400px;
+        @include responsive(tablet) {
+          justify-content: center;
+          min-width: 0;
+          margin-top: 1rem;
+        }
+        @include responsive(phone) {
+          margin-top: 1rem;
 
+        }
+        .price {
+          @include responsive(tablet) {
+            display: none;
+          }
+          @include responsive(phone) {
+            display: none;
+          }
+        }
         p {
           min-width: 80px;
+          @include responsive(phone) {
+            min-width: 20px;
+            margin-top: 1rem;
+            
+          }
         }
       }
     }
@@ -170,11 +240,21 @@
     padding: 2rem;
     display: flex;
     justify-content: space-between;
+    @include responsive(tablet) {
+     gap: 1rem;
+     font-size: 1.4rem;
 
+    }
+    @include responsive(phone) {
+     flex-direction: column;
+
+    }
     .select_method {
       display: flex;
       flex-direction: column;
-
+      @include responsive(tablet) {
+        min-width: 200px;
+      }
       strong {
         font-size: 2rem;
         margin-bottom: 3rem;
@@ -185,7 +265,7 @@
           display: flex;
           gap: 2rem;
           border: 1px solid #ccc;
-          padding: 10px;
+          padding: 10px 10px;
           margin-top: 2rem;
           justify-content: space-between;
           align-items: center;
@@ -193,6 +273,15 @@
           svg {
             font-size: 2rem;
             color: red;
+          }
+          @include responsive(tablet){
+            padding: 5px 10px;
+            min-height: 50px;
+          }
+          @include responsive(phone){
+            padding: 5px 10px;
+            margin-top: 2rem;
+            
           }
         }
       }
@@ -215,13 +304,26 @@
           border: 1px solid #ccc;
           padding: 10px 20px;
           margin-top: 2rem;
+          @include responsive(tablet){
+            padding: 5px 10px;
+          }
+          @include responsive(tablet){
+            padding: 5px 10px;
+            min-height: 50px;
+            align-items: center;
+          }
         }
       }
     }
 
     .summary_order {
       padding: 2rem;
-
+      @include responsive(tablet){
+        padding: 0;
+        padding-top: 2rem;
+        margin-top: auto;
+        min-width: 260px;
+      }
       .form_order {
         border-radius: 5px;
         padding: 2rem;
@@ -229,11 +331,16 @@
         flex-direction: column;
         justify-content: space-around;
         gap: 1.5rem;
-
+        @include responsive(tablet){
+          gap: 1rem;
+        }
         .form_group {
           display: flex;
           justify-content: space-between;
           gap: 2rem;
+          @include responsive(tablet){
+            gap: 0;
+          }
         }
       }
     }
@@ -255,7 +362,10 @@
       border: 1px solid teal;
       cursor: pointer;
       opacity: 0.7;
-
+      @include responsive(tablet){
+        width: 200px;
+        margin-right: 0;
+      }
       &:hover {
         opacity: 1;
       }

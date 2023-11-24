@@ -116,7 +116,7 @@ function DetailProduct() {
       <div className={styles.wrapper}>
         <div className={styles.image_container}>
           <img src={img} alt="img-detail" />
-          {img === 'https://res.cloudinary.com/dfnwnhng8/image/upload/v1697096199/product_img/yljygqou1crfwob3rtib.avif' ? checkpoints.map((checkpoint) => (
+          {img === 'https://res.cloudinary.com/dfnwnhng8/image/upload/v1699695454/product_img/rndmlgvbgvv3dadjltn2.avif' ? checkpoints.map((checkpoint) => (
             <div 
               onClick={() => handleShowInfo(checkpoint.id)}
               style={{

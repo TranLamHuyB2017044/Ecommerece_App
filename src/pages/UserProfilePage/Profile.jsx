@@ -2,6 +2,7 @@ import styles from "./profile.module.scss";
 import Header from "../../components/HeaderComponent/Header";
 import Footer from "../../components/FooterComponent/Footer";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 export default function Profile() {
@@ -47,10 +48,11 @@ export default function Profile() {
                             </tr>
                             <tr>
                                 <td>
-                                    <button className={styles.Btn}>Edit</button>
                                 </td>
                                 <td>
-                                    <button className={styles.Btn_delete}>Delete</button>
+                                    <Link to='/profile/edit'>
+                                        <button className={styles.Btn}>Edit</button>
+                                    </Link>
                                 </td>
                             </tr>
                         </tbody>

@@ -14,6 +14,7 @@ import { addProduct } from "./redux/cartRedux";
 import { publicRequest } from "./request";
 import { useEffect } from "react";
 import Checkout from "./pages/CheckoutPage/Checkout";
+import Purchased from "./pages/PurchasedPage/Purchased";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.currentUser)
@@ -56,9 +57,10 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route element={<ProtectUser/>} >
           <Route path="/profile" element={<Profile/>}/>
-          <Route path="/profile/edit/:id" element={<EditProfile/>}/>
+          <Route path="/profile/edit/" element={<EditProfile/>}/>
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/user/purchase" element={<Purchased />} />
         </Route>
         <Route path="/3d" element={<Test/>} />
         <Route path="*" element={<p>There's nothing here: 404!</p>} />

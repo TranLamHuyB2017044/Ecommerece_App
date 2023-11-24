@@ -84,7 +84,8 @@ function Header() {
             />
             {showDropdown && (
               <ul className={styles.menu}>
-                <Link style={{textDecoration: 'none', color: '#000'}} to='/profile'><li className={styles.menu_item}>My Profiile</li></Link>
+                <Link style={{textDecoration: 'none', color: '#000'}} to='/profile'><li className={styles.menu_item}>My Profile</li></Link>
+                <Link style={{textDecoration: 'none', color: '#000'}} to='/user/purchase'><li className={styles.menu_item}>My Purchase</li></Link>
                 <li className={styles.menu_item} onClick={handleLogout}>
                   Logout
                 </li>
@@ -105,7 +106,7 @@ function Header() {
               onMouseOver={() => setShowCart(true)}
             >
               <div>
-                <Link to='/cart'><ShoppingCartOutlinedIcon /></Link>
+                <Link to='/cart' ><ShoppingCartOutlinedIcon /></Link>
               </div>
               {quantity > 0 ? (
                 <div className={styles.showCart}>

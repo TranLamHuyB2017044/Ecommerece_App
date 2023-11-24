@@ -45,7 +45,7 @@ function Products({ cat }) {
               <ShoppingCartOutlinedIcon />
             </div> */}
             {user ? (
-              <Link to={`/detail/${product._id}`} className={styles.icon}>
+              <Link to={`/detail/${product._id}`} onClick={() => window.scrollTo(0, 0)} className={styles.icon}>
                 <SearchOutlinedIcon style={{ color: "#000" }} />
               </Link>
             ) : (

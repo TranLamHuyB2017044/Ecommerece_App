@@ -7,7 +7,7 @@ function Newsletter() {
     <div className={styles.Newsletter_container}>
         <div className={styles.Newsletter_content}>
           <p>Our Lowest Prices of the Season on Specials: 20-65% off. </p>
-          <Link to="/products">Shop all</Link>
+          <Link to="/products" onClick={() => window.scrollTo(0, 0)}>Shop all</Link>
         </div>
         
         <img loading="lazy" src={NewsletterIMG} alt="NewsletterIMG" />

@@ -1,0 +1,175 @@
+@import "../../components/GlobalStyles/GlobalStyles.scss";
+
+.Purchased_contents {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  @include responsive(phone){
+    display: block;
+  }
+  .purchase_navbar{
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    list-style: none;
+    gap: 1rem;
+    @include responsive(phone){
+      display: none;
+    }
+    .edit_profile{
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      border-bottom: 0.5px solid #ccc;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      img{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        @include responsive(tablet){
+          margin-right: 2.5rem;
+        }
+      }
+      @include responsive(tablet){
+        flex-direction: column;
+        
+      }
+    }
+    .navbar_items{
+      padding: 1rem 2rem;
+      position: relative;
+      cursor: pointer;
+      opacity: 0.6;
+      &:hover{
+        opacity: 1;
+        font-size: 1.8rem;
+        transition: all 0.2s linear;
+        color: teal;
+
+      }
+    }
+    .goTo_Profile{
+      text-decoration: none;
+      color: black;
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      svg{
+        font-size: 1.8rem;
+      }
+      :hover{
+        opacity: 1;
+      }
+    }
+  }
+  .Purchased{
+    margin-bottom: 5rem;
+    .purchase_order{
+      border: 1px solid teal;
+      width: 85%;
+      border-radius: 3px;
+      margin-top: 1rem;
+      @include responsive(phone){
+        margin: 1rem auto ;
+      }
+      .status{
+        display: flex;
+        justify-content: flex-end;
+        font-size: 2rem;
+        text-transform: uppercase;
+        padding: 2rem;
+        width: 85%;
+        border-bottom: 1px solid teal;
+        margin: auto;
+        font-weight: bold;  
+      }
+      .info{
+        display: flex;
+        border-bottom: 1px solid #ccc;
+        padding: 2rem;
+        margin-left: 5rem;
+        gap: 1rem;
+        @include responsive(phone){
+          flex-direction: column;
+          margin-left: 0;
+        }
+        img{
+          width: 90px;
+          height: 90px;
+        }
+        .product{
+          display: flex;
+          gap: 2rem;
+          justify-content: space-between;
+          min-width: -webkit-fill-available;
+          @include responsive(tablet){
+            min-width: 0;
+            flex-direction: column;
+          }
+          .items{
+            flex: 1;
+            .varian{
+              opacity: 0.5;
+            }
+            .quantity{
+              @include responsive(tablet){
+                display: flex;
+                justify-content: space-between;
+              }
+            }
+          }
+          .info_shipping{
+            flex: 2;
+          }
+        }
+      }
+      .order_total{
+        .total{
+          display: flex;
+          justify-content: flex-end;
+          padding: 2rem;
+          font-weight: bold;
+        }
+        .buy_again{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 2rem;
+          p{
+            font-size: 1.4rem;
+            opacity: 0.6;
+            @include responsive(tablet){
+              max-width: 200px;
+            }
+            @include responsive(phone){
+              max-width: 100px;
+            }
+          }
+          button{
+            padding: 10px 50px;
+            background-color: white;
+            border: 1px solid #ccc;
+            opacity: 0.8;
+            font-weight: 550;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover{
+              opacity: 1;
+              background-color: teal;
+              color: white;
+            }
+            @include responsive(tablet){
+              padding: 20px 40px;
+            }
+            @include responsive(phone){
+              padding: 20px 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

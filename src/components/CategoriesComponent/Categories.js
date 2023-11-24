@@ -11,7 +11,7 @@ function Categories() {
                     </div>
                     <div className={styles.category_info}>
                         <p className={styles.title}>{category.title}</p>
-                        <button><Link to={`/products/?category=${category.cat}`} className={styles.Link}>Shop Now</Link></button>
+                        <button><Link to={`/products/?category=${category.cat}`} onClick={() => window.scrollTo(0, 0)} className={styles.Link}>Shop Now</Link></button>
                     </div>
                 </div>
             ))}
