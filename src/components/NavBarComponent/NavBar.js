@@ -15,6 +15,9 @@ function NavBar() {
                 <Link to= '/products' className={styles.item}>Shop</Link>
                 <Link to= '/products/?category=Men' className={styles.item}>Men</Link>
                 <Link to= '/products/?category=Women' className={styles.item}>Women</Link>
+                <Link to= '/products/?category=Vans' className={styles.item}>Vans</Link>
+                <Link to= '/products/?category=Nike' className={styles.item}>Nike</Link>
+                <Link to= '/products/?category=Adidas' className={styles.item}>Adidas</Link>
             </ul>
 
             <div onClick={showNavbar} className={styles.nav_btn}>
