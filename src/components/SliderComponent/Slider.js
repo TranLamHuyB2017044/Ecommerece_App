@@ -20,8 +20,7 @@ function Slider() {
 	useEffect(()=>{
 		const interId = setInterval(() => {
 			setSlideIndex(prev => prev < 2 ? prev + 1 : 0);
-			console.log('rendering')
-		}, 10000)
+		}, 20000)
 
 		return () => clearInterval(interId) 	
 	}, [])
