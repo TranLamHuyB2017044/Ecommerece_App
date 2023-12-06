@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { publicRequest } from "../../request";
+
 import {
   LazyLoadImage,
 } from "react-lazy-load-image-component";
@@ -15,16 +16,19 @@ function Products({ cat, filters, sort }) {
   const [products, setProduct] = useState([]);
   const [filtersProduct, setFiltersProduct] = useState([]);
   const user = useSelector((state) => state.user.currentUser);
+  const api = publicRequest();
+
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await publicRequest.get(
+        const res = await api.get(
           cat ? `/product/${cat}` : "/product/"
         );
         setProduct(res.data);
       } catch (error) {}
     };
     getProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cat]);
   useEffect(() => {
     setFiltersProduct(

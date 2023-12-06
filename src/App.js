@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, Outlet, } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Outlet, Link, } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/CartPage/Cart";
 import ProductList from "./pages/ProductPage/ProductList";
@@ -15,6 +15,7 @@ import { publicRequest } from "./request";
 import { useEffect } from "react";
 import Checkout from "./pages/CheckoutPage/Checkout";
 import Purchased from "./pages/PurchasedPage/Purchased";
+const api = publicRequest();
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.currentUser)
@@ -22,9 +23,8 @@ function App() {
   const cart_id = user?.data?.others.cart
   useEffect(() => {
     const cartApi = async () => {
-        const token = localStorage.getItem('access_token');
         if (cart_id != null) {
-            const rs = await publicRequest.get(`/cart/${userId}`,  {headers: {token: `Bearer ${token}`}});
+            const rs = await api.get(`/cart/${userId}`);
             dispatch(addProduct(rs.data?.products));
         }else return
     };
@@ -63,7 +63,7 @@ function App() {
           <Route path="/user/purchase" element={<Purchased />} />
         </Route>
         <Route path="/3d" element={<Test/>} />
-        <Route path="*" element={<p>There's nothing here: 404!</p>} />
+        <Route path="*" element={<p style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', gap: '5px'}}>There's nothing here: 404! Back to  <Link to='/'> home</Link></p>} />
       </Routes>
     </BrowserRouter>
   );

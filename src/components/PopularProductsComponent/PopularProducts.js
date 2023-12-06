@@ -11,11 +11,11 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 function Products({ cat }) {
   const [products, setProduct] = useState([]);
   const user = useSelector((state) => state.user?.currentUser);
-
+  const api = publicRequest()
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await publicRequest.get(
+        const res = await api.get(
           cat
             ? `/product/${cat}`
             : "/product/"
@@ -26,6 +26,7 @@ function Products({ cat }) {
       }
     };
     getProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cat]);
 
   return (

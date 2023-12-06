@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import {Login} from '../../redux/userRedux'
 import {publicRequest} from '../../request'
+import Cookies from 'js-cookie';
 import { useForm } from "react-hook-form";
 import {imgLogin} from '../../data'
 import MyAlert from "../../components/AlertComponent/Alert";  
@@ -15,15 +16,17 @@ function SignIn() {
   const [password, setPassword] = useState('')
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const api = publicRequest();
 
   const { register, handleSubmit } = useForm();
 
   const onLogin = async () =>{
     try {
-      const user = await publicRequest.post('/auth/login', {username, password})
+      const user = await api.post('/auth/login', {username, password})
       dispatch(Login(user))
       if(user){
         window.localStorage.setItem('access_token', user.data.accessToken)
+        Cookies.set('refreshToken', user.data.refreshToken, { expires: 365 })
         MyAlert.Alert(
           'success', 'Login successfully'
         )

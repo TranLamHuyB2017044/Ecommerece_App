@@ -19,7 +19,8 @@ export default function Purchased() {
   const [loading, setLoading] = useState(true);
   const user = useSelector((state) => state.user.currentUser.data.others);
   const userId = user._id;
-  const token = localStorage.getItem("access_token");
+  const api = publicRequest();
+
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -45,43 +46,15 @@ export default function Purchased() {
   ];
   useEffect(() => {
     const getUserOder = async () => {
-      const rs = await publicRequest.get(`/order/userOrder/${userId}`, {
-        headers: {
-          token: `Bearer ${token}`,
-        },
-      });
+      const rs = await api.get(`/order/userOrder/${userId}`);
       setLoading(false);
       setUserOrder(rs.data);
     };
     getUserOder();
-  }, [token, userId]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
 
-  const [activeItem, setActiveItem] = useState("All");
-  let AcceptedOrder = []
-  let PendingOrder = []
-  let RejectedOrder = []
-  const handleItemClick = async(item) => {
-    let OrderUpdate = [...userOrder];
 
-    setActiveItem(item)
-    if (item === 'All') {
-      setUserOrder(OrderUpdate);
-    }else if (item === 'Accepted'){
-      const filterOrder = OrderUpdate.filter(order => order.status === item)
-      AcceptedOrder = [...filterOrder];
-      OrderUpdate = [...AcceptedOrder]
-    }else if (item === 'Rejected'){
-      const filterOrder = OrderUpdate.filter(order => order.status === item)
-      RejectedOrder = [...filterOrder];
-      OrderUpdate = [...RejectedOrder]
-    }else if (item === 'Pending'){
-      const filterOrder = OrderUpdate.filter(order => order.status === item)
-      PendingOrder = [...filterOrder];
-      OrderUpdate = [...PendingOrder]
-    }
-    
-  };
-  console.log(userOrder, activeItem)
   return (
     <div className={styles.Purchased_container}>
       <Header />
@@ -95,38 +68,6 @@ export default function Purchased() {
                 <EditNoteOutlinedIcon /> Edit profile
               </Link>
             </div>
-          </li>
-          <li
-            className={`${styles.navbar_items} ${
-              activeItem === "All" ? styles.active : ""
-            }`}
-            onClick={() => handleItemClick("All")}
-          >
-            All
-          </li>
-          <li
-            className={`${styles.navbar_items} ${
-              activeItem === "Pending" ? styles.active : ""
-            }`}
-            onClick={() => handleItemClick("Pending")}
-          >
-            Pending
-          </li>
-          <li
-            className={`${styles.navbar_items} ${
-              activeItem === "Accepted" ? styles.active : ""
-            }`}
-            onClick={() => handleItemClick("Accepted")}
-          >
-            Accepted
-          </li>
-          <li
-            className={`${styles.navbar_items} ${
-              activeItem === "Rejected" ? styles.active : ""
-            }`}
-            onClick={() => handleItemClick("Rejected")}
-          >
-            Rejected
           </li>
         </ul>
         {loading ? (

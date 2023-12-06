@@ -14,6 +14,8 @@ import { SignUp } from "../../redux/userRedux";
 import MyAlert from "../../components/AlertComponent/Alert";
 
 function Register() {
+  const api = publicRequest();
+
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -47,7 +49,7 @@ function Register() {
   const navigate = useNavigate();
   const onSignup = async () => {
     try {
-      const rs = await publicRequest.post("/auth/register", newUser);
+      const rs = await api.post("/auth/register", newUser);
       dispatch(SignUp(rs));
       MyAlert.Alert("success", "Registered successfully");
       navigate("/login");

@@ -17,9 +17,11 @@ export default function Profile() {
   const userId = useSelector((state) => state.user.currentUser.data.others._id);
   const token = localStorage.getItem("access_token");
   const [user, setUser] = useState({})
+  const api = publicRequest();
+
   useEffect(() => {
     const getUserInfo = async () => {
-      const rs = await publicRequest.get(`/user/${userId}`, {
+      const rs = await api.get(`/user/${userId}`, {
         headers: {
           token: `Bearer ${token}`,
         },
@@ -58,7 +60,7 @@ export default function Profile() {
           avatar: avatar.length > 0 ? avatar[0] : user.avatar,
         };
         setLoading(true);
-        await publicRequest
+        await api
           .put(`user/${userId}`, data, {
             headers: {
               token: `Bearer ${token}`,

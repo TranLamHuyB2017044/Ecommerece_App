@@ -17,6 +17,7 @@ function Search() {
   const location = useLocation();
   const query = location.search;
   const user = useSelector((state) => state.user.currentUser);
+  const api = publicRequest();
 
   const handleFilter = (e) => {
     const value = e.target.value;
@@ -27,11 +28,12 @@ function Search() {
   };
   useEffect(() => {
     const queryProduct = async () => {
-      const product = await publicRequest.get(`/product/${query}`);
+      const product = await api.get(`/product/${query}`);
       setProduct(product.data);
       console.log(product.data);
     };
     queryProduct();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
   useEffect(() => {
     setFiltersProduct(

@@ -18,12 +18,15 @@ function DetailProduct() {
   const user = useSelector((state) => state.user.currentUser);
   const userId = user.data.others._id;
   const dispatch = useDispatch()
+  const api = publicRequest();
+
   useEffect(() => {
     const productList = async () => {
-      const rs = await publicRequest.get(`/product/${id}/`);
+      const rs = await api.get(`/product/${id}/`);
       setproduct(rs.data);
     };
     productList();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -54,9 +57,9 @@ function DetailProduct() {
       const productId = id
       const token = localStorage.getItem('access_token');
       const products = [{productId, quantity, size, color}]
-      await publicRequest.post('/cart/', {userId, products })
+      await api.post('/cart/', {userId, products })
       MyAlert.Alert("success", "Product added successfully");
-      const rs = await publicRequest.get(`/cart/${userId}`, {headers: {token: `Bearer ${token}`}})
+      const rs = await api.get(`/cart/${userId}`, {headers: {token: `Bearer ${token}`}})
       dispatch(addProduct(rs.data.products))
     }
   };

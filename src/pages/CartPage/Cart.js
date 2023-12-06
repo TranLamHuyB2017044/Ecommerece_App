@@ -25,7 +25,9 @@ function Cart() {
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.products);
   const [activeProduct, setActiveProduct] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const api = publicRequest();
+
   const userId = useSelector(
     (state) => state.user.currentUser?.data.others._id
   );
@@ -33,18 +35,17 @@ function Cart() {
     return (total += product.quantity * product.productId.price);
   }, 0);
 
-
-  useEffect(()=> {
+  useEffect(() => {
     const initialActiveProduct = cartProducts.map((product) => product.active);
-    setActiveProduct(initialActiveProduct); 
-  }, [cartProducts])
+    setActiveProduct(initialActiveProduct);
+  }, [cartProducts]);
   // Update product quantity
   const handleClick = (index, type) => {
     cartProducts.map(async (item, i) => {
       if (type === "incr") {
         if (i === index) {
           dispatch(incrementQuantity(i));
-          await publicRequest.put(`/cart/${userId}`, {
+          await api.put(`/cart/${userId}`, {
             _id: item._id,
             quantity: item.quantity + 1,
           });
@@ -54,7 +55,7 @@ function Cart() {
           dispatch(decrementProduct(i));
           if (item.quantity > 1) {
             console.log(item.quantity - 1);
-            await publicRequest.put(`/cart/${userId}`, {
+            await api.put(`/cart/${userId}`, {
               _id: item._id,
               quantity: item.quantity - 1,
             });
@@ -71,19 +72,16 @@ function Cart() {
       setLoading(true);
       cartProducts.map(async (product, index) => {
         if (index === id) {
-          const token = localStorage.getItem("access_token");
-          await publicRequest.put(`/cart/${userId}`, {
+          await api.put(`/cart/${userId}`, {
             _id: product._id,
             active: false,
           });
-          await publicRequest
-            .delete(`/cart/${userId}`, {
-              data: { productIndex: id },
-              headers: { token: `Bearer ${token}` },
-            })
-            
+          await api.delete(`/cart/${userId}`, {
+            data: { productIndex: id },
+          });
+
           dispatch(removeProduct(id));
-          setLoading(false)
+          setLoading(false);
         }
       });
     } catch (error) {
@@ -113,15 +111,15 @@ function Cart() {
       if (type === "color") {
         if (index === id) {
           console.log(product._id, color);
-          await publicRequest.put(`/cart/${userId}`, {
+          await api.put(`/cart/${userId}`, {
             _id: product._id,
             color,
-          });
+          }).then(result => console.log(result.data));
         }
       } else {
         if (index === id) {
           console.log(product._id, size);
-          await publicRequest.put(`/cart/${userId}`, {
+          await api.put(`/cart/${userId}`, {
             _id: product._id,
             size,
           });
@@ -130,28 +128,25 @@ function Cart() {
       return product;
     });
   };
-  
   const handleActiveProduct = (index) => {
     const newActiveProduct = [...activeProduct];
     newActiveProduct[index] = !newActiveProduct[index];
     setActiveProduct(newActiveProduct);
     cartProducts.map(async (item, id) => {
       if (index === id) {
-        await publicRequest.put(`/cart/${userId}`, {
-          _id: item._id,
-          active: newActiveProduct[index],
-        }).then(() => setActiveProduct(newActiveProduct))
+        await api
+          .put(`/cart/${userId}`, {
+            _id: item._id,
+            active: newActiveProduct[index],
+          })
+          .then(() => setActiveProduct(newActiveProduct));
       }
     });
   };
 
-
-
   const handleCheckout = (e) => {
     e.preventDefault();
-    const active = activeProduct.filter(
-      (item) => item === true
-    );
+    const active = activeProduct.filter((item) => item === true);
 
     if (active.length > 0) {
       navigate("/checkout");
@@ -329,7 +324,7 @@ function Cart() {
 
                         <input
                           type="checkbox"
-                          checked={activeProduct[index]}
+                          checked={activeProduct[index] || ""}
                           onChange={() => handleActiveProduct(index)}
                         />
                       </div>
@@ -371,10 +366,7 @@ function Cart() {
                 <p className={styles.total_price}>$ {Total.toFixed(2)}</p>
               </div>
 
-              <button
-                onClick={handleCheckout}
-                className={styles.submit}
-              >
+              <button onClick={handleCheckout} className={styles.submit}>
                 Checkout Now
               </button>
             </form>

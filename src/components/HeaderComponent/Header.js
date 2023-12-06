@@ -9,6 +9,7 @@ import { Logout } from "../../redux/userRedux";
 import localStorage from "redux-persist/es/storage";
 import {  useState, useRef } from "react";
 import NavBar from "../NavBarComponent/NavBar";
+import Cookies from "js-cookie";
 
 function Header() {
   
@@ -29,6 +30,7 @@ function Header() {
     window.location.reload()
     await localStorage.removeItem("persist:root");
     await localStorage.removeItem("access_token");
+    Cookies.remove('refreshToken');
   };
   const handleChange = () => {
       if(refInput.current.value !== ''){

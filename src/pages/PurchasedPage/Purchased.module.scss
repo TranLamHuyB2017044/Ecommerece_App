@@ -4,6 +4,7 @@
   margin-top: 100px;
   display: grid;
   grid-template-columns: 25% 75%;
+  grid-row: 100%;
   @include responsive(phone) {
     display: block;
   }

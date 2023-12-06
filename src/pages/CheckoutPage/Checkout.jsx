@@ -41,7 +41,6 @@ export default function Checkout() {
   const [cart, setCart] = useState({});
   const user = useSelector((state) => state.user.currentUser.data.others);
   const userId = user._id;
-  const token = localStorage.getItem("access_token");
   const [checked, setChecked] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [address, setAddress] = useState(user.address);
@@ -54,6 +53,8 @@ export default function Checkout() {
   const refInput = useRef(null);
   const refInput2 = useRef(null);
   const navigate = useNavigate()
+  const api = publicRequest();
+
   const Total = products.reduce((total, product) => {
     return (total += product.quantity * product.productId.price);
   }, 0);
@@ -73,11 +74,7 @@ export default function Checkout() {
   };
   useEffect(() => {
     const getUserOder = async () => {
-      const rs = await publicRequest.get(`cart/${userId}`, {
-        headers: {
-          token: `Bearer ${token}`,
-        },
-      });
+      const rs = await api.get(`cart/${userId}`,);
       setCart(rs.data);
     };
     getUserOder();
@@ -121,8 +118,8 @@ export default function Checkout() {
         payment: Payment,
         shipping: Shipping,
       };
-      await publicRequest
-        .post("/order", data, { headers: { token: `Bearer ${token}` } })
+      await api
+        .post("/order", data)
         .then((response) => {
           setLoading(false);
           console.log(response.data);
