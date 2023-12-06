@@ -4,7 +4,7 @@ import Badge from "@mui/material/Badge";
 import styles from "./Header.module.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../../redux/userRedux";
 import localStorage from "redux-persist/es/storage";
 import {  useState, useRef } from "react";
@@ -24,10 +24,10 @@ function Header() {
   const avatarUser = userInfo?.data?.others.avatar
   const refInput = useRef()
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const handleLogout = async () => {
     navigate("/login");
-    Logout();
-    window.location.reload()
+    dispatch(Logout())
     await localStorage.removeItem("persist:root");
     await localStorage.removeItem("access_token");
     Cookies.remove('refreshToken');
