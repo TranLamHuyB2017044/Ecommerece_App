@@ -34,6 +34,7 @@ function SignIn() {
       }
     } catch (error) {
       MyAlert.Alert('error', error.response.data);
+      console.log(error)
     }
     
   }
