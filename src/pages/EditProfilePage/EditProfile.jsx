@@ -15,23 +15,18 @@ export default function Profile() {
     address: "",
   });
   const userId = useSelector((state) => state.user.currentUser.data.others._id);
-  const token = localStorage.getItem("access_token");
   const [user, setUser] = useState({})
   const api = publicRequest();
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const rs = await api.get(`/user/${userId}`, {
-        headers: {
-          token: `Bearer ${token}`,
-        },
-      });
+      const rs = await api.get(`/user/${userId}`);
       setUser(rs.data);
     };
     getUserInfo();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ userId ]);
   const [avatar, setAvatar] = useState([]);
   const [loading, setLoading] = useState(false);
   const onChange = (e) => {
@@ -51,7 +46,6 @@ export default function Profile() {
       ) {
         Alert.Alert("error", "You must fill at least one");
       } else {
-        const token = localStorage.getItem("access_token");
         const data = {
           username: username.length > 0 ? username : user.username,
           email: email.length > 0 ? email : user.email,
@@ -61,20 +55,13 @@ export default function Profile() {
         };
         setLoading(true);
         await api
-          .put(`user/${userId}`, data, {
-            headers: {
-              token: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
-            },
-          })
+          .put(`user/${userId}`, data)
           .then((response) => {
-            console.log(response.data);
+            console.log(response.data)
+            setUser(response.data)
             setLoading(false);
             Alert.Alert("success", "Update successfully");
           });
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
       }
     } catch (error) {
       Alert.Alert("error", error.response.data);

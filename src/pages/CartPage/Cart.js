@@ -36,8 +36,10 @@ function Cart() {
   }, 0);
 
   useEffect(() => {
-    const initialActiveProduct = cartProducts.map((product) => product.active);
-    setActiveProduct(initialActiveProduct);
+    if (cartProducts.length > 0) {
+      const initialActiveProduct = cartProducts.map((product) => product.active);
+      setActiveProduct(() => initialActiveProduct);
+    }
   }, [cartProducts]);
   // Update product quantity
   const handleClick = (index, type) => {
@@ -128,20 +130,26 @@ function Cart() {
       return product;
     });
   };
-  const handleActiveProduct = (index) => {
-    const newActiveProduct = [...activeProduct];
-    newActiveProduct[index] = !newActiveProduct[index];
-    setActiveProduct(newActiveProduct);
-    cartProducts.map(async (item, id) => {
-      if (index === id) {
-        await api
-          .put(`/cart/${userId}`, {
-            _id: item._id,
-            active: newActiveProduct[index],
-          })
-          .then(() => setActiveProduct(newActiveProduct));
+  const handleActiveProduct = async (index) => {
+    try {
+      const newActiveProduct = [...activeProduct];
+      newActiveProduct[index] = !newActiveProduct[index];
+  
+      setActiveProduct(() => newActiveProduct);
+  
+      const item = cartProducts[index];
+      const rs = await api.put(`/cart/${userId}`, {
+        _id: item._id,
+        active: newActiveProduct[index],
+      });
+      if(rs){
+        setActiveProduct(newActiveProduct)
       }
-    });
+
+    } catch (error) {
+      // Handle error
+      console.error("Error updating active product:", error);
+    }
   };
 
   const handleCheckout = (e) => {
@@ -151,7 +159,6 @@ function Cart() {
     if (active.length > 0) {
       navigate("/checkout");
       window.scrollTo(0, 0);
-      window.location.reload();
     } else {
       Alert.Alert("warning", "Please select a product");
     }
@@ -324,7 +331,7 @@ function Cart() {
 
                         <input
                           type="checkbox"
-                          checked={activeProduct[index] || ""}
+                          checked={activeProduct[index]|| false}
                           onChange={() => handleActiveProduct(index)}
                         />
                       </div>
