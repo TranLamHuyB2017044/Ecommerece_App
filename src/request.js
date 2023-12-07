@@ -2,8 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 const headers = { Accept: "application/json" };
 
-const BaseURL = "http://localhost:5000/api/";
-// const BaseURL = "https://tranlamhuy-be-ecommerce.onrender.com/api/";
+// const BaseURL = "http://localhost:5000/api/";
+const BaseURL = "https://tranlamhuy-be-ecommerce.onrender.com/api/";
 
 // console.log(token)
 
