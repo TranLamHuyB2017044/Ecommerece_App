@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../../redux/userRedux";
+import { LogoutCart } from "../../redux/cartRedux";
 import localStorage from "redux-persist/es/storage";
 import {  useState, useRef } from "react";
 import NavBar from "../NavBarComponent/NavBar";
@@ -26,11 +27,12 @@ function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const handleLogout = async () => {
-    navigate("/login");
     dispatch(Logout())
+    dispatch(LogoutCart())
     await localStorage.removeItem("persist:root");
     await localStorage.removeItem("access_token");
     Cookies.remove('refreshToken');
+    navigate("/login");
   };
   const handleChange = () => {
       if(refInput.current.value !== ''){

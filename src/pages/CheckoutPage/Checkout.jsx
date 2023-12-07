@@ -226,7 +226,7 @@ export default function Checkout() {
                     </p>
                   </div>
                 </div>
-              ))
+              )).reverse()
             ) : (
               <div style={{ margin: "2rem", padding: "2rem" }}>
                 <Loading />

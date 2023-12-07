@@ -36,9 +36,13 @@ const CartSlice = createSlice({
         }
         return product;
       })
+    },
+    LogoutCart:(state) =>{
+      state.products = null
+      state.quantity = 0
     }
   },
 });
 
-export const { addProduct, removeProduct, incrementQuantity,  decrementProduct} = CartSlice.actions;
+export const { addProduct, removeProduct, incrementQuantity,  decrementProduct, LogoutCart} = CartSlice.actions;
 export default CartSlice.reducer;

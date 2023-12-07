@@ -15,7 +15,7 @@ export default function Profile() {
     address: "",
   });
   const userId = useSelector((state) => state.user.currentUser.data.others._id);
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
   const api = publicRequest();
 
   useEffect(() => {
@@ -25,8 +25,8 @@ export default function Profile() {
     };
     getUserInfo();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ userId ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
   const [avatar, setAvatar] = useState([]);
   const [loading, setLoading] = useState(false);
   const onChange = (e) => {
@@ -46,22 +46,22 @@ export default function Profile() {
       ) {
         Alert.Alert("error", "You must fill at least one");
       } else {
-        const data = {
-          username: username.length > 0 ? username : user.username,
-          email: email.length > 0 ? email : user.email,
-          phone: phone.length > 0 ? phone : user.phone,
-          address: address.length > 0 ? address : user.address,
-          avatar: avatar.length > 0 ? avatar[0] : user.avatar,
-        };
+        const formData = new FormData();
+        formData.append("username", username);
+        formData.append("email", email);
+        formData.append("phone", phone);
+        formData.append("address", address);
+        formData.append("avatar", avatar[0]); // Assuming avatar is a File object
+
+        // Add additional fields as needed
+
         setLoading(true);
-        await api
-          .put(`user/${userId}`, data)
-          .then((response) => {
-            console.log(response.data)
-            setUser(response.data)
-            setLoading(false);
-            Alert.Alert("success", "Update successfully");
-          });
+        await api.put(`user/${userId}`, formData).then((response) => {
+          console.log(response.data);
+          setUser(response.data);
+          setLoading(false);
+          Alert.Alert("success", "Update successfully");
+        });
       }
     } catch (error) {
       Alert.Alert("error", error.response.data);
@@ -81,7 +81,6 @@ export default function Profile() {
           <div className={styles.info}>
             <form onSubmit={handleUpdateUser}>
               <div className={styles.info_user}>
-
                 <div className={styles.form_group}>
                   <label htmlFor="username">UserName</label>
                   <input
