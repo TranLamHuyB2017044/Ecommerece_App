@@ -2,8 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 const headers = { Accept: "application/json" };
 
-const BaseURL = "http://localhost:5000/api/";
-// const BaseURL = "https://tranlamhuy-be-ecommerce.onrender.com/api/";
+// const BaseURL = "http://localhost:5000/api/";
+const BaseURL = "https://tranlamhuy-be-ecommerce.onrender.com/api/";
 
 // console.log(token)
 
@@ -40,7 +40,6 @@ export const publicRequest = () => {
         response.data === "Token is invalid"
       ) {
         const refreshTokenLocal = Cookies.get("refreshToken");
-
         try {
           const { newAccessToken, refreshToken } = (
             await instance.post(`auth/refreshToken/`, {
