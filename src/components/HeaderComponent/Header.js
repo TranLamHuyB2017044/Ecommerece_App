@@ -8,9 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../../redux/userRedux";
 import { LogoutCart } from "../../redux/cartRedux";
 import localStorage from "redux-persist/es/storage";
-import {  useState, useRef } from "react";
+import {  useState, useRef, useEffect } from "react";
 import NavBar from "../NavBarComponent/NavBar";
 import Cookies from "js-cookie";
+import { publicRequest } from "../../request";
 
 function Header() {
   
@@ -21,11 +22,25 @@ function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [productsSearch, setProductsSearch] = useState('');
-  const name = userInfo?.data?.others.username;
-  const avatarUser = userInfo?.data?.others.avatar
+  // const name = userInfo?.data?.others.username;
+  // const avatarUser = userInfo?.data?.others.avatar
+  const userId = userInfo?.data?.others._id
   const refInput = useRef()
   const navigate = useNavigate();
   const dispatch = useDispatch()
+  const api = publicRequest()
+  const [user, setUser] = useState({})
+  useEffect(() => {
+    const getUserInfo  = async() =>{
+      if(userId !=null){
+        const rs = await api.get(`/user/${userId}`)
+        setUser(rs.data)
+      }
+    }
+    getUserInfo()
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ ])
   const handleLogout = async () => {
     dispatch(Logout())
     dispatch(LogoutCart())
@@ -78,9 +93,9 @@ function Header() {
           <div
             className={styles.dropdown}
           >
-            <p className={styles.name}>{name}</p>
+            <p className={styles.name}>{user.username}</p>
             <img 
-              src={avatarUser} 
+              src={user.avatar} 
               alt="avatar_User"
               // onMouseLeave={() => setShowDropdown(false)}
               // onMouseOver={() => setShowDropdown(true)}

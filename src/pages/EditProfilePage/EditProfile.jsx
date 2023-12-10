@@ -62,6 +62,9 @@ export default function Profile() {
           setLoading(false);
           Alert.Alert("success", "Update successfully");
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000)
       }
     } catch (error) {
       Alert.Alert("error", error.response.data);

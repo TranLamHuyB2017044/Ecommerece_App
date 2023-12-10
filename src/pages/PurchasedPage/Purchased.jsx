@@ -113,7 +113,7 @@ export default function Purchased() {
                           </p>
                           <div className={styles.quantity}>
                             <p>X {item.quantity}</p>
-                            <p>$ {item.productId.price * item.quantity}</p>
+                            <p>$ {(item.productId.price * item.quantity).toFixed(2)}</p>
                           </div>
                         </div>
                         <div className={styles.info_shipping}>
@@ -126,7 +126,7 @@ export default function Purchased() {
                         </div>
                       </div>
                     </div>
-                  ))}
+                  )).reverse()}
                   <div className={styles.order_total}>
                     <div className={styles.total}>
                       <div className={styles.date_ordered}>
@@ -156,7 +156,7 @@ export default function Purchased() {
                           (total, item) =>
                             total + item.productId.price * item.quantity,
                           0
-                        )}
+                        ).toFixed(2)}
                         $
                       </p>
                     </div>
