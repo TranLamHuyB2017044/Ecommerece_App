@@ -67,7 +67,7 @@ export default function Profile() {
         }, 2000)
       }
     } catch (error) {
-      Alert.Alert("error", error.response.data);
+      Alert.Alert("error", error);
     }
   };
   return (
