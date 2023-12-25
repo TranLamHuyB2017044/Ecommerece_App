@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Search from "./pages/SearchPage/Search";
 import Profile from "./pages/UserProfilePage/Profile";
 import EditProfile from "./pages/EditProfilePage/EditProfile";
-import Test from "./pages/Test";
 import { addProduct } from "./redux/cartRedux";
 import { publicRequest } from "./request";
 import { useEffect } from "react";
@@ -62,7 +61,6 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/user/purchase" element={<Purchased />} />
         </Route>
-        <Route path="/3d" element={<Test/>} />
         <Route path="*" element={<p style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh', gap: '5px'}}>There's nothing here: 404! Back to  <Link to='/'> home</Link></p>} />
       </Routes>
     </BrowserRouter>

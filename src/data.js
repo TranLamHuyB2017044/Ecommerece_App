@@ -1,31 +1,25 @@
-import Shoes from './components/Shoes'
-import NikeShoes from './components/Nike'
-import Vans from './components/Vans'
 
-const AdidasIMG = <Shoes/>
-const NikeIMG = <NikeShoes/>
-const VansIMG = <Vans/>
 export const sliderItems = [
     {
       id: 1,
-      img: AdidasIMG,
+      img: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHNob2VzfGVufDB8fDB8fHww',
       title: "SUMMER SALE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "#f5fafd",
     },
     {
       id: 2,
-      img: NikeIMG,
+      img: "https://app.photoroom.com/static/media/reseller.fdbba3624b735670ceb7.webp",
       title: "AUTUMN COLLECTION",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "#fcf1ed",
     },
     {
       id: 3,
-      img: VansIMG,
+      img: 'https://bizweb.dktcdn.net/100/455/705/products/invincible-1.jpg?v=1701160884877',
       title: "LOUNGEWEAR LOVE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "#fbf0f4",
+      bg: "#f5fafd",
     },
   ];
 

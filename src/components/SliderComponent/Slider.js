@@ -4,8 +4,7 @@ import { sliderItems } from "../../data";
 import styles from "./Slider.module.scss";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+
 
 
 function Slider() {
@@ -40,11 +39,6 @@ function Slider() {
 						style={{ backgroundColor: item.bg }}
 					>
 						<div className={styles.slider_image}>
-						<Canvas>
-							<ambientLight/>
-							{item.img}
-							<OrbitControls  autoRotate/>
-						</Canvas>
 							<img src={item.img} alt={item.img} />
 						</div>
 						<div className={styles.slider_info}>
