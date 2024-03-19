@@ -7,6 +7,7 @@ Ecommerce Website MERN stack
 - Gmail: tlhuy02@gmail.com
 ## Description
 - Ecommerce Website with MERN stack
+- Link Deploy: https://tranlamhuyb2017044.github.io/Ecommerece_Client ( Please wait a minute while the app load the product from the database. )
 ## Several of the app's features
 - Register, Login and Logout.
 - Search, filter product.
